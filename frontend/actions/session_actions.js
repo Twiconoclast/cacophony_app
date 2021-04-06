@@ -23,6 +23,5 @@ export const createSession = user => (dispatch) => (
 )
 
 export const deleteSession = () => (dispatch) => {
-    debugger
     return SessionsAPIUtil.deleteSession().then(() => dispatch(logoutCurrentUser()))
 }

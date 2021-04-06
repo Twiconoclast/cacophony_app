@@ -1,15 +1,21 @@
 import React from "react";
+import {Redirect} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
 class SessionForm extends React.Component {
+    
     constructor(props) {
         super(props)
         this.state = this.props.user
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleSubmit(e) {
         e.preventDefault()
+        console.log(this.props)
         this.props.action(this.state)
+            .then(() => this.props.history.push('/channels/@me'))
     }
 
     handleChange(type) {
@@ -17,8 +23,9 @@ class SessionForm extends React.Component {
     }
 
     render() {
+        
         return (
-            <div>
+            <div className='login-form'>
                 <h3>{this.props.formType}</h3>
                 <form onSubmit={this.handleSubmit}>
                     <label>Username: 

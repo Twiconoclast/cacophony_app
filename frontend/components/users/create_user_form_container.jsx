@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import {createUser} from '../../actions/session_actions'
 import SessionForm from '../sessions/session_form'
 
 const mapSTP = (state) => ({
@@ -11,7 +13,7 @@ const mapSTP = (state) => ({
 })
 
 const mapDTP = (dispatch) => ({
-    action: (user) => dispatch(createUser(user))
+    action: (formUser) => dispatch(createUser(formUser))
 })
 
-export default connect(mapSTP, mapDTP)(SessionForm)
+export default withRouter(connect(mapSTP, mapDTP)(SessionForm))

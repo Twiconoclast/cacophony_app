@@ -8,10 +8,6 @@ class UserHome extends React.Component {
         this.handleLogOut = this.handleLogOut.bind(this)
     }
 
-    componentDidMount() {
-        console.log(this.props)
-    }
-
     handleLogOut(e) {
         e.preventDefault()
         this.props.deleteSession()

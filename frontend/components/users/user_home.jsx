@@ -11,7 +11,7 @@ class UserHome extends React.Component {
     handleLogOut(e) {
         e.preventDefault()
         this.props.deleteSession()
-            .then(() => this.props.history.push('/'))
+        this.props.history.push('/')
     }
 
     render() {

@@ -11,10 +11,14 @@ class SessionForm extends React.Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
+    componentDidMount() {
+        if (window.currentUser) return <Redirect to='/channels/@me'/>
+    }
+
     handleSubmit(e) {
         e.preventDefault()
         this.props.action(this.state)
-        this.props.history.push('/channels/@me')
+            .then(() => this.props.history.push('/channels/@me'))
     }
 
     handleChange(type) {

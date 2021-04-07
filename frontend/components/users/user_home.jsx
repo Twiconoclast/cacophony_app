@@ -5,13 +5,18 @@ import { useHistory } from "react-router-dom";
 class UserHome extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {redirect:false}
         this.handleLogOut = this.handleLogOut.bind(this)
+    }
+
+    componentDidMount() {
+        if (!window.currentUser) (<Redirect to='/'/>)
     }
 
     handleLogOut(e) {
         e.preventDefault()
         this.props.deleteSession()
-        this.props.history.push('/')
+            .then(() => this.props.history.push('/'))
     }
 
     render() {

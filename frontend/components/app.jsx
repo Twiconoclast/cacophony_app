@@ -7,8 +7,7 @@ import ChannelViewContainer from './channels/channel_view_container'
 import Splash from './splash'
 import {AuthRoute, ProtectedRoute} from '../util/route_utils'
 
-const App = () => (
-    <HashRouter>
+const App = () => (  
         <Switch>
             <AuthRoute exact path='/login' component={CreateSessionContainer}/>
             <AuthRoute exact path='/signup' component={CreateUserFormContainer}/>
@@ -16,7 +15,6 @@ const App = () => (
             <ProtectedRoute exact path='/channels/:serverId/:channelId' component={ChannelViewContainer}/>
             <AuthRoute path='/' component={Splash}/>
         </Switch>
-    </HashRouter>
 )
 
 export default App;

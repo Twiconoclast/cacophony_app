@@ -1,18 +1,22 @@
 import * as SessionsAPIUtil from '../util/sessions_api_util'
-
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
-
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER'
+export const REDIRECT_TO = 'REDIRECT_TO'
+export const RECEIVE_ERRORS = 'RECEIVE_ERRORS'
 
-const receiveCurrentUser = (user) => {
+const receiveCurrentUser = (user) => ({
     type: RECEIVE_CURRENT_USER,
     user
-}
+})
 
-const logoutCurrentUser = () => {
+const logoutCurrentUser = () => ({
     type: LOGOUT_CURRENT_USER
+})
 
-}
+const receiveErrors = (errors) => ({
+    type: REDIRECT_TO,
+    errors
+})
 
 export const createUser = user => (dispatch) => (
     SessionsAPIUtil.createUser(user).then((user) => dispatch(receiveCurrentUser(user)))

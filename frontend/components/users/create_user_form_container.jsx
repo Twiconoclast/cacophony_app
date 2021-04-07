@@ -13,7 +13,7 @@ const mapSTP = (state) => ({
 })
 
 const mapDTP = (dispatch) => ({
-    action: (formUser) => dispatch(createUser(formUser))
+    action: (user) => dispatch(createUser(user))
 })
 
 export default withRouter(connect(mapSTP, mapDTP)(SessionForm))

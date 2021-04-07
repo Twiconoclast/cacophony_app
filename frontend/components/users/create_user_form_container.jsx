@@ -5,11 +5,17 @@ import {createUser} from '../../actions/session_actions'
 import SessionForm from '../sessions/session_form'
 
 const mapSTP = (state) => ({
-    formType: 'Sign Up',
+    formType: 'Create an account',
+    subheading: '',
+    subheadingClass: 'hidden',
     user: {
         username: '',
         password: ''
-    }
+    },
+    button_text: "Register",
+    linkAddress: '/login',
+    beforeLinkText: '',
+    linkText: 'Already have an account?'
 })
 
 const mapDTP = (dispatch) => ({

@@ -5,11 +5,17 @@ import { withRouter } from 'react-router-dom';
 import SessionForm from './session_form'
 
 const mapSTP = (state) => ({
-    formType: 'Sign In',
+    formType: 'Welcome back!',
+    subheading: "We're so excited to see you again!",
+    subheadingClass: 'show',
     user: {
         username: '',
         password: ''
-    }
+    },
+    buttonText: "Login",
+    linkAddress: '/signup',
+    beforeLinkText: 'Need an account? ',
+    linkText: 'Register'
 })
 
 const mapDTP = (dispatch) => ({

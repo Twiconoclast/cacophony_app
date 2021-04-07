@@ -1,5 +1,5 @@
 import React from "react";
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 
 class SessionForm extends React.Component {
@@ -28,17 +28,28 @@ class SessionForm extends React.Component {
     render() {
         
         return (
-            <div className='login-form'>
-                <h3>{this.props.formType}</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Username: 
-                        <input type="text" value={this.state.username} onChange={this.handleChange('username')}/>
-                    </label>
-                    <label>Password: 
-                        <input type="password" value={this.state.password} onChange={this.handleChange('password')}/>
-                    </label>
-                    <button>Submit</button>
-                </form>
+            <div className='form-background'>
+                <div id='login-form-container'>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className='form-align-contents'>
+                            <h3 className='form-heading'>{this.props.formType}</h3>
+                            <p className={this.props.subheadingClass}>{this.props.subheading}</p>
+                            <div className='actual-form-contents'>
+                                <label className='sessionFormLabel'>USERNAME 
+                                    <input className='input-box' type="text" value={this.state.username} onChange={this.handleChange('username')}/>
+                                </label>
+                                <label className='sessionFormLabel'>PASSWORD
+                                    <input className='input-box' type="password" value={this.state.password} onChange={this.handleChange('password')}/>
+                                </label>
+                                <button className='submit-button'>{this.props.buttonText}</button>
+                                <div className='after-form-link'>
+                                    {this.props.beforeLinkText}
+                                    <Link to={this.props.linkAddress}>{this.props.linkText}</Link>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }

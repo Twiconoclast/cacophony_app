@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, HashRouter, Switch, useHistory } from 'react-router-dom';
+import { Route, HashRouter, Switch, useHistory, Redirect } from 'react-router-dom';
 import CreateSessionContainer from './sessions/create_session_container'
 import CreateUserFormContainer from './users/create_user_form_container'
 import UserHomeContainer from './users/user_home_container'
@@ -13,7 +13,8 @@ const App = () => (
             <AuthRoute exact path='/signup' component={CreateUserFormContainer}/>
             <ProtectedRoute exact path='/channels/@me' component={UserHomeContainer}/>
             <ProtectedRoute exact path='/channels/:serverId/:channelId' component={ChannelViewContainer}/>
-            <AuthRoute path='/' component={Splash}/>
+            <AuthRoute exact path='/' component={Splash}/>
+            <Route render={() => <Redirect to="/" />} />
         </Switch>
 )
 

@@ -17,7 +17,10 @@
  *= require_self
  */
 
- .form-background {
-    background-image: image-url('from_discord/login_background.jpg');
-    height: 100vh;
- }
+ // CSS Reset
+ @import "css_reset.scss";
+
+ // Components
+ @import "session_form.scss";
+
+ 

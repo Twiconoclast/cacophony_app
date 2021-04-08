@@ -9,6 +9,7 @@ class SessionForm extends React.Component {
         this.state = this.props.user
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.handleDemoClick = this.handleDemoClick.bind(this)
     }
 
     componentDidMount() {
@@ -25,10 +26,20 @@ class SessionForm extends React.Component {
         return (e) => (this.setState({[type]: e.currentTarget.value}))
     }
 
+    handleDemoClick(e) {
+        e.preventDefault()
+        this.props.createSession({username: "DemoUser", password: "demouser"})
+            .then(() => this.props.history.push('/channels/@me'))
+    } 
+
     render() {
         
         return (
             <div className='form-background'>
+                <div className='blacknwhite-logo-div'>
+                    <img id='logoimage' src={window.bnwlogo} alt="logo"/>
+                    <img id='logotext' src="https://fontmeme.com/permalink/210407/11d12c80b616300575805a1178e3be30.png" alt="logo"/>
+                </div>
                 <div id='login-form-container'>
                     <form onSubmit={this.handleSubmit}>
                         <div className='form-align-contents'>
@@ -44,9 +55,12 @@ class SessionForm extends React.Component {
                                 <button className='submit-button'>{this.props.buttonText}</button>
                                 <div className='after-form-link'>
                                     {this.props.beforeLinkText}
-                                    <Link to={this.props.linkAddress}>{this.props.linkText}</Link>
+                                    <Link id='login-link-id' to={this.props.linkAddress}>{this.props.linkText}</Link>
                                 </div>
                             </div>
+                        </div>
+                        <div>
+                            <button className='demo-user-login' onClick={this.handleDemoClick}>Login as DemoUser!</button>
                         </div>
                     </form>
                 </div>

@@ -16,7 +16,7 @@ class Splash extends React.Component {
 
     handleSigninButton(e) {
         e.preventDefault()
-        this.props.history.push('/signin')
+        this.props.history.push('/signup')
     }
 
     handleDemoClick(e) {

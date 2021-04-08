@@ -1,11 +1,18 @@
-import { combineReducers } from 'redux';
-import sessionErrorsReducer from './session_errors_reducer.js';
-import userErrorsReducer from './user_errors_reducer.js';
+import {RECEIVE_ERRORS, REMOVE_ERRORS} from '../actions/session_actions'
 
-const errorsReducer = combineReducers({
-  session_errors: sessionErrorsReducer,
-  user_errors: userErrorsReducer
-  // We can add as many reducers as we need here.
-});
+
+const errorsReducer = (state={errors: []}, action) => {
+    Object.freeze(state)
+    let newState = Object.assign({}, state)
+    switch(action.type) {
+        case RECEIVE_ERRORS:
+            newState = action.errors.responseJSON
+            return newState.errors
+        case REMOVE_ERRORS:
+            return []
+        default:
+            return []
+    }
+}
 
 export default errorsReducer

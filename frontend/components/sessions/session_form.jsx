@@ -6,24 +6,29 @@ class SessionForm extends React.Component {
     
     constructor(props) {
         super(props)
-        this.state = this.props.user
+        this.state = {user: {...this.props.user}, hiddenOrShow: 'hidden'}
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleDemoClick = this.handleDemoClick.bind(this)
     }
 
     componentDidMount() {
-        if (window.currentUser) return <Redirect to='/channels/@me'/>
+        console.log(this.props.errors)
+        console.log(this.props.areThereErrors)
+        if (this.props.areThereErrors > 0) {
+            this.setState({hiddenOrShow:'show'})
+            this.props.removeErrors()
+        }
     }
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.action(this.state)
-            .then(() => this.props.history.push('/channels/@me'))
+        this.props.action(this.state.user)
+            .fail(() => this.componentDidMount())
     }
 
     handleChange(type) {
-        return (e) => (this.setState({[type]: e.currentTarget.value}))
+        return (e) => (this.setState({user: {[type]: e.currentTarget.value}}))
     }
 
     handleDemoClick(e) {
@@ -61,6 +66,9 @@ class SessionForm extends React.Component {
                         </div>
                         <div>
                             <button className='demo-user-login' onClick={this.handleDemoClick}>Login as DemoUser!</button>
+                            <ul className={this.hiddenOrShow} id='error-list'>
+                                {this.props.errors.map((error) => <li key={error}>{error}</li>)}
+                            </ul>
                         </div>
                     </form>
                 </div>

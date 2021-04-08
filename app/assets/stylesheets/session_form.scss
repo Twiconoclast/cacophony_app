@@ -15,7 +15,8 @@
  }
 
  #logotext {
-     max-height: 28px;
+     max-height: 20px;
+     padding-top: 6px;
  }
 
  #logoimage {
@@ -145,4 +146,19 @@
 .demo-user-login:hover {
     cursor: pointer; 
     border-style: inset;
+}
+
+#error-list {
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+    list-style-type: none;
+    justify-content: flex-end;
+    align-self: start;
+    padding-left: 0;
+    text-align: left;
+    li {
+        text-align: left;
+    }
 }

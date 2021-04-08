@@ -39,10 +39,12 @@ class SessionForm extends React.Component {
         
         return (
             <div className='form-background'>
-                <div className='blacknwhite-logo-div'>
-                    <img id='logoimage' src={window.bnwlogo} alt="logo"/>
-                    <img id='logotext' src="https://fontmeme.com/permalink/210407/11d12c80b616300575805a1178e3be30.png" alt="logo"/>
-                </div>
+                <Link to='/'>
+                    <div className='blacknwhite-logo-div'>
+                        <img id='logoimage' src={window.bnwlogo} alt="logo"/>
+                        <img id='logotext' src="https://fontmeme.com/permalink/210407/11d12c80b616300575805a1178e3be30.png" alt="logo"/>
+                    </div>
+                </Link>
                 <div id='login-form-container'>
                     <form onSubmit={this.handleSubmit}>
                         <div className='form-align-contents'>

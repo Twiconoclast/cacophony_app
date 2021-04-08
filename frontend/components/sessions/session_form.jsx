@@ -6,15 +6,13 @@ class SessionForm extends React.Component {
     
     constructor(props) {
         super(props)
-        this.state = {user: {...this.props.user}, hiddenOrShow: 'hidden'}
+        this.state = {...this.props.user, hiddenOrShow: 'hidden'}
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleDemoClick = this.handleDemoClick.bind(this)
     }
 
     componentDidMount() {
-        console.log(this.props.errors)
-        console.log(this.props.areThereErrors)
         if (this.props.areThereErrors > 0) {
             this.setState({hiddenOrShow:'show'})
             this.props.removeErrors()
@@ -23,12 +21,12 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.action(this.state.user)
+        this.props.action({username: this.state.username, password: this.state.password})
             .fail(() => this.componentDidMount())
     }
 
     handleChange(type) {
-        return (e) => (this.setState({user: {[type]: e.currentTarget.value}}))
+        return (e) => (this.setState({[type]: e.currentTarget.value}))
     }
 
     handleDemoClick(e) {

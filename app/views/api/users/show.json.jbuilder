@@ -1,9 +1,10 @@
-json.id json.set! @user.id do
+json.set! @user.id do
+    json.id @user.id
     json.username @user.username
-    json.servers @user.servers.each do |server|
-        json.set! server.id json.extract! server, :id, :server_name
+    json.servers(@user.servers) do |server|
+        json.extract! server, :id, :server_name
     end
-    json.fellow_server_members @user.fellow_server_members.each do |member|
-        json.set! member.id json.extract! member, :id, :username
+    json.fellow_server_members(@user.fellow_server_members) do |member|
+        json.extract! member, :id, :username
     end
 end

@@ -8,7 +8,7 @@ import {fetchServers, fetchServer, createServer, deleteServer} from '../../actio
 import {createServerMembership, deleteServerMembership} from '../../util/server_membership_api_util'
 
 const mapSTP = (state) => ({
-    userId: Object.values(state.sessions.currentUser)[0].id
+    user: state.sessions.currentUser
 })
 
 const mapDTP = (dispatch) => ({

@@ -4,9 +4,23 @@
     <title>CacophonyApp</title>
     <% if logged_in? %>
       <script type="text/javascript">
-        window.currentUser =
+        window.currentUser = 
           {<%=current_user.id%>: {"id": <%=current_user.id%>, 
-          "username": "<%=current_user.username%>"}}
+          "username": "<%=current_user.username%>",
+          'servers': 
+            <%user_servers = Array.new%>
+            <%current_user.servers.each do |server|%>
+              <%user_servers.push({"id": server.id, 'server_name': server.server_name})%>
+            <%end%>
+            <%=user_servers%>
+          ,
+          'fellow_server_members': 
+            <%friends = []%>
+            <%current_user.fellow_server_members.each do |member|%>
+              <%friends.push({"id": member.id, 'username': member.username})%>
+            <%end%>
+            <%=friends%>
+          }}
        </script>
     <% end %>
     <script type="text/javascript">

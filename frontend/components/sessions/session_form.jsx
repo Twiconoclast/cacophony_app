@@ -46,7 +46,7 @@ class SessionForm extends React.Component {
                     </div>
                 </Link>
                 <div id='login-form-container'>
-                    <form onSubmit={this.handleSubmit}>
+                    <form id='login-form' onSubmit={this.handleSubmit}>
                         <div className='form-align-contents'>
                             <h3 className='form-heading'>{this.props.formType}</h3>
                             <p className={this.props.subheadingClass}>{this.props.subheading}</p>
@@ -63,12 +63,13 @@ class SessionForm extends React.Component {
                                     <Link id='login-link-id' to={this.props.linkAddress}>{this.props.linkText}</Link>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <button className='demo-user-login' onClick={this.handleDemoClick}>Login as DemoUser!</button>
                             <ul className={this.hiddenOrShow} id='error-list'>
                                 {this.props.errors.map((error) => <li key={error}>{error}</li>)}
                             </ul>
+                        </div>
+                        <div id='demoStuff'>
+                            <img id='demoavatar' src={window.demouser} alt="demouser"/>
+                            <button className='demo-user-login' onClick={this.handleDemoClick}>Login as DemoUser!</button>  
                         </div>
                     </form>
                 </div>

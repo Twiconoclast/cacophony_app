@@ -10,7 +10,7 @@ class UserHome extends React.Component {
     }
 
     componentDidMount() {
-        if (!window.currentUser) (<Redirect to='/'/>)
+        console.log(this.props.user)
     }
 
     handleLogOut(e) {
@@ -24,6 +24,7 @@ class UserHome extends React.Component {
             <div>
                 <button onClick={this.handleLogOut}>Log Out</button>
                 <h3>I'm going to have User Home components!</h3>
+                <p>{this.props.user.username}</p>
             </div>
         )
     }

@@ -5,7 +5,7 @@ import {deleteSession} from '../../actions/session_actions'
 import UserHome from './user_home'
 
 const mapSTP = (state) => ({
-    
+    user: window.currentUser
 })
 
 const mapDTP = (dispatch) => ({

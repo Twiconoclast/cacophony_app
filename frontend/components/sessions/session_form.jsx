@@ -32,7 +32,6 @@ class SessionForm extends React.Component {
     handleDemoClick(e) {
         e.preventDefault()
         this.props.createSession({username: "DemoUser", password: "demouser"})
-            .then(() => this.props.history.push('/channels/@me'))
     } 
 
     render() {

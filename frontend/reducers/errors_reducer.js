@@ -1,6 +1,5 @@
 import {RECEIVE_ERRORS, REMOVE_ERRORS} from '../actions/session_actions'
 
-
 const errorsReducer = (state={errors: []}, action) => {
     Object.freeze(state)
     let newState = Object.assign({}, state)

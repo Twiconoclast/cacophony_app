@@ -13,6 +13,6 @@ class Channel < ApplicationRecord
     has_many :messages,
         class_name: :Message,
         foreign_key: :channel_id,
-        dependent: :delete_all
+        dependent: :destroy
 
 end

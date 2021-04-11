@@ -1,14 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import {deleteSession} from '../../actions/session_actions'
-import UserHome from './user_home'
-import {fetchUserByUsername, fetchUser, removeErrors} from '../../actions/user_actions'
+import { connect } from 'react-redux';
 import {fetchServers, fetchServer, createServer, deleteServer} from '../../actions/server_actions'
+import UserHome from './user_home'
 import {createServerMembership, deleteServerMembership} from '../../util/server_membership_api_util'
+import {deleteSession} from '../../actions/session_actions'
 
 const mapSTP = (state) => ({
-    user: state.sessions.currentUser
+    user: Object.values(state.sessions.currentUser)[0],
+
 })
 
 const mapDTP = (dispatch) => ({

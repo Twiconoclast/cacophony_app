@@ -9,8 +9,7 @@ const usersReducer = (state={}, action) => {
             newState = action.users
             return newState
         case RECEIVE_USER:
-            console.log(action.user)
-            newState[action.user.id] = action.user
+            newState[Object.keys(action.user)] = action.user
             return newState
         default:
             return state

@@ -1,6 +1,6 @@
 class Api::ServersController < ApplicationController
     def index
-        @user = User.find_by(id: params[:user_id])
+        @user = User.find_by(id: current_user.id)
         render :index
     end
 
@@ -11,6 +11,7 @@ class Api::ServersController < ApplicationController
             @channel = Channel.new(channel_name: 'general', owner_id: @server.owner_id, server_id: @server.id)
             @channel.save
             @server_membership = ServerMembership.new(server_id: @server.id, member_id: @server.owner_id)
+            @server_membership.save
             render :show
         else
             render json: {errors: ["You already have a server by that name"]}, status: 422

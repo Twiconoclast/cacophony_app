@@ -37,8 +37,8 @@ export const fetchServer = (serverId) => (dispatch) => (
     ServerAPIUtils.fetchServer(serverId).then((server) => dispatch(receiveServer(server))).catch(errors => dispatch(receiveErrors(errors)))
 )
 
-export const createServer = (serverId) => (dispatch) => (
-    ServerAPIUtils.createServer(serverId).then((server) => dispatch(receiveServer(server))).catch(errors => dispatch(receiveErrors(errors)))
+export const createServer = (server) => (dispatch) => (
+    ServerAPIUtils.createServer(server).then((server) => dispatch(receiveServer(server))).catch(errors => dispatch(receiveErrors(errors)))
 )
 
 export const deleteServer = (serverId) => (dispatch) => (

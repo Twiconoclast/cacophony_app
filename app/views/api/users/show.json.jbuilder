@@ -1,10 +1,12 @@
 json.set! @user.id do
     json.id @user.id
     json.username @user.username
-    json.servers(@user.servers) do |server|
-        json.extract! server, :id, :server_name
-    end
-    json.fellow_server_members(@user.fellow_server_members) do |member|
-        json.extract! member, :id, :username
-    end
+    public_servers = @user.servers.select {|server| server.private == false}
+    private_servers = @user.servers.select {|server| server.private == true}
+    public_servers.map! {|server| server.id}
+    private_servers.map! {|server| server.id}
+    json.public_servers public_servers
+    json.private_servers private_servers
+    friends = @user.fellow_server_members.map {|member| member.id}.uniq.select {|id| id != @user.id}
+    json.fellow_server_members friends
 end

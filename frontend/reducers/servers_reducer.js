@@ -1,14 +1,28 @@
 import {RECEIVE_SERVERS, RECEIVE_SERVER, REMOVE_SERVER} from '../actions/server_actions'
 
-const serversReducer = (state={}, action) => {
+const preState = {
+    publicServers: {},
+    privateServers: {}
+}
+
+const serversReducer = (state=preState, action) => {
     Object.freeze(state)
     let newState = Object.assign({}, state)
     switch(action.type) {
         case RECEIVE_SERVERS:
-            newState = Object.assign(newState, action.servers)
+            if (action.servers.publicServers != null) {
+                newState.publicServers = action.servers.publicServers
+            }
+            if (action.servers.privateServers != null) {
+                newState.privateServers = action.servers.privateServers
+            }
             return newState
         case RECEIVE_SERVER:
-            newState[action.server.id] = action.server
+            if (action.server.publicServers != null) {
+                newState.publicServers[Object.keys(action.server.publicServers)[0]] = Object.values(action.server.publicServers)[0]
+            } else if (action.server.privateServers != null) {
+                newState.privateServers[Object.keys(action.server.privateServers)[0]] = Object.values(action.server.privateServers)[0]
+            }
             return newState
         case REMOVE_SERVER:
             delete newState[action.server.id]

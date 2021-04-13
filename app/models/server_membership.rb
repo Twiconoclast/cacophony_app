@@ -1,5 +1,6 @@
 class ServerMembership < ApplicationRecord
     validates :member_id, :server_id, presence:true
+    validates :member_id, uniqueness: {scope: :server_id}
 
     belongs_to :member,
         class_name: :User,

@@ -6,9 +6,7 @@
 
 json.users do
     json.array!(@users) do |user|
-        json.id json.set! user.id do
-            json.id user.id
-            json.username user.username
-        end
+        json.id user.id
+        json.username user.username
     end
 end

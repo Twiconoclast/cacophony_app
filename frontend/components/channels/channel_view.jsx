@@ -1,6 +1,7 @@
 import React from 'react'
 import PublicServerIndexContainer from '../servers/public_server_index_container'
 import PrivateServerIndexContainer from '../servers/private_server_index_container'
+import UserSearchForm from '../users/user_search_form'
 
 class ChannelView extends React.Component {
     constructor(props) {
@@ -60,6 +61,7 @@ class ChannelView extends React.Component {
                 
                 <div className={this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : ''}><PrivateServerIndexContainer/></div>
                 <div className={!this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : ''}>I hold channels when a public server is selected
+                    <UserSearchForm serverId={this.props.serverId}></UserSearchForm> 
                     <button className={!this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'delete-button'} onClick={() => {
                         this.deleteServer(this.props.serverId)
                         this.props.history.push('/channels/@me')

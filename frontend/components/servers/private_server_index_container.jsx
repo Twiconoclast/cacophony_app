@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {deleteSession} from '../../actions/session_actions'
 import {fetchServers, fetchServer, createServer, deleteServer} from '../../actions/server_actions'
 import {createServerMembership, deleteServerMembership} from '../../util/server_membership_api_util'
 import PrivateServerIndex from './private_server_index'

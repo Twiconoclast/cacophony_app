@@ -16,7 +16,6 @@ class UserHome extends React.Component {
             this.props.fetchUser(friendId)
         })
         this.arrayOfStatePrivateServers = Object.values(this.props.statePrivateServers)
-        this.handleLogOut = this.handleLogOut.bind(this)
         this.state = {}
         this.fSMList = []
     }

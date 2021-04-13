@@ -5,6 +5,7 @@ class PrivateServerIndex extends React.Component {
     constructor(props) {
         super(props)
         this.friendClick = this.friendClick.bind(this)
+        this.handleLogOut = this.handleLogOut.bind(this)
     }
 
     componentDidMount() {
@@ -22,6 +23,11 @@ class PrivateServerIndex extends React.Component {
             return this.props.createServer({owner_id: this.props.user.id, server_name: `DM-${name}-${this.props.user.username}`, private: true, recipient_id: id})
             .then((response) => this.props.history.push(`/channels/${Object.values(response.server.privateServers)[0].id}/${Object.values(response.server.privateServers)[0].defaultChannelId}`))
         }
+    }
+
+    handleLogOut(e) {
+        e.preventDefault()
+        this.props.deleteSession()
     }
 
     render() {

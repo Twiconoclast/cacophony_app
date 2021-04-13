@@ -1,5 +1,5 @@
-export const RECEIVE_USERS = 'RECEIVE_USERS'
-export const RECEIVE_USER = 'RECEIVE_USER'
+import {RECEIVE_USERS, RECEIVE_USER} from '../actions/user_actions'
+import {LOGOUT_CURRENT_USER} from '../actions/session_actions'
 
 const usersReducer = (state={}, action) => {
     Object.freeze(state)
@@ -9,8 +9,10 @@ const usersReducer = (state={}, action) => {
             newState = action.users
             return newState
         case RECEIVE_USER:
-            newState[Object.keys(action.user)] = action.user
+            newState[action.user.id] = action.user
             return newState
+        case LOGOUT_CURRENT_USER:
+            return {}
         default:
             return state
     }

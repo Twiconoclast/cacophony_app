@@ -5,16 +5,19 @@ import {fetchServers, fetchServer, createServer, deleteServer} from '../../actio
 import UserHome from './user_home'
 import {createServerMembership, deleteServerMembership} from '../../util/server_membership_api_util'
 import {deleteSession} from '../../actions/session_actions'
+import {fetchUser, fetchUserByUsername} from '../../actions/user_actions'
 
 const mapSTP = (state) => ({
-    user: Object.values(state.sessions.currentUser)[0],
-
+    user: state.sessions.currentUser,
+    friends: state.entities.users,
+    statePrivateServers: state.entities.servers.privateServers,
+    privateServerFriendIds: state.sessions.currentUser.privateServerFriends
 })
 
 const mapDTP = (dispatch) => ({
     deleteSession: () => dispatch(deleteSession()),
     fetchUserByUsername: (username) => dispatch(fetchUserByUsername(username)),
-    fetchUser: (id) => dispatch(fetchUser(id)),
+    fetchUser: (userId) => dispatch(fetchUser(userId)),
     removeErrors: () => dispatch(removeErrors()),
     fetchServers: (user_id) => dispatch(fetchServers(user_id)),
     fetchServer: (serverId) => dispatch(fetchServer(serverId)),

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_204220) do
+ActiveRecord::Schema.define(version: 2021_04_12_110500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2021_04_05_204220) do
     t.boolean "private", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "default_channel_id"
+    t.integer "recipient_id"
     t.index ["owner_id"], name: "index_servers_on_owner_id"
     t.index ["server_name", "owner_id"], name: "index_servers_on_server_name_and_owner_id", unique: true
   end

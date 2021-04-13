@@ -6,8 +6,9 @@ import {createServerMembership, deleteServerMembership} from '../../util/server_
 import PrivateServerIndex from './private_server_index'
 
 const mapSTP = (state, ownProps) => ({
-    user: Object.values(state.sessions.currentUser)[0],
+    user: state.sessions.currentUser,
     serverIdLinks: ownProps.serverIdLinks,
+    selectedServerId: ownProps.match.params.serverId,
     privateServers: Object.values(state.entities.servers.privateServers)
 })
 

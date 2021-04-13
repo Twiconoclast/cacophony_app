@@ -31,7 +31,10 @@ module.exports = {
             // for webpack 5, this 'query' key should be 'options' key instead
             // for more info: https://webpack.js.org/configuration/module/#ruleoptions--rulequery
 
-            presets: ['@babel/env', '@babel/react'] //tells loader to use @babel/env which transpiles back to es5 and @babel/react which converts jsx code
+            presets: ['@babel/env', '@babel/react'], //tells loader to use @babel/env which transpiles back to es5 and @babel/react which converts jsx code
+            plugins: [
+                  '@babel/transform-runtime'
+            ]
           }
         },
       }

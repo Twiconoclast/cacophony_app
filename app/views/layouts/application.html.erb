@@ -2,12 +2,16 @@
 <html>
   <head>
     <title>CacophonyApp</title>
+    <link rel="shortcut icon" type="image/jpg" href="<%= image_url('from_discord/logo_icon.ico') %>"/>
     <% if logged_in? %>
       <%private_servers = Array.new%>
       <%public_servers = Array.new%>
+      <% private_server_friends = Array.new %>
       <%current_user.servers.each do |server|%>
           <%if server.private == true%>
             <%private_servers.push(server.id)%>
+            <% private_server_friends.push(server.recipient_id) unless server.recipient_id == current_user.id %>
+            <% private_server_friends.push(server.owner_id) unless server.owner_id == current_user.id %>
           <% else %>
             <% public_servers.push(server.id) %>
           <% end %>
@@ -18,11 +22,12 @@
       <%end%>
       <script type="text/javascript">
         window.currentUser = 
-          {<%=current_user.id%>: {"id": <%=current_user.id%>, 
+          {"id": <%=current_user.id%>, 
           "username": "<%=current_user.username%>",
-          "privateServers": <%=private_servers%>,
-          "publicServers": <%=public_servers%>,
-          "fellowServerMembers": <%=friends%>}}
+          "privateServers": <%=private_servers.uniq%>,
+          "publicServers": <%=public_servers.uniq%>,
+          "fellowServerMembers": <%=friends.uniq%>,
+          "privateServerFriends": <%=private_server_friends.uniq%>}
        </script>
     <% end %>
     <script type="text/javascript">
@@ -36,7 +41,10 @@
       window.tcastle = "<%= image_url('homepage/transparentish-castle.svg') %>";
       window.acloud = "<%= image_url('homepage/another-cloud.svg') %>";
       window.demouser = "<%= image_url('demo_user_avatar.PNG') %>";
+      window.smalllogo = "<%= image_url('from_discord/logo_icon.ico') %>";
+      window.whiteontback = "<%= image_url('pngfind.com-discord-icon-png-283551.png') %>";
     </script>
+    <script src="https://kit.fontawesome.com/cf1f8fa8bf.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

@@ -1,4 +1,5 @@
 import {RECEIVE_SERVERS, RECEIVE_SERVER, REMOVE_SERVER} from '../actions/server_actions'
+import {LOGOUT_CURRENT_USER} from '../actions/session_actions'
 
 const preState = {
     publicServers: {},
@@ -25,7 +26,15 @@ const serversReducer = (state=preState, action) => {
             }
             return newState
         case REMOVE_SERVER:
-            delete newState[action.server.id]
+            console.log(action.serverId.public_servers)
+            if (action.serverId.public_servers != null) {
+                delete newState.publicServers[parseInt(action.serverId.public_servers.id)]
+            } else if (action.serverId.private_servers != null) {
+                delete newState.privateServers[parseInt(action.serverId.private_servers.id)]
+            }
+            return newState
+        case LOGOUT_CURRENT_USER:
+            return preState
         default:
             return state
     }

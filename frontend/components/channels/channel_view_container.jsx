@@ -9,7 +9,11 @@ import ChannelView from './channel_view'
 
 const mapSTP = (state, ownProps) => ({
     server: state.entities.servers[ownProps.match.params.serverId],
-    serverId: ownProps.match.params.serverId
+    publicServers: Object.values(state.entities.servers.publicServers),
+    privateServers: Object.values(state.entities.servers.privateServers),
+    serverId: ownProps.match.params.serverId,
+    user: state.sessions.currentUser
+    // members: state.entities.servers[ownProps.match.params.serverId].members
 })
 
 const mapDTP = (dispatch) => ({

@@ -2,7 +2,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-
+    font-family: Whitney, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 #button-holder {
@@ -31,7 +31,7 @@
 #home-demo-button {
     margin: 5px;
     border-radius: 28px;
-    min-width: 150px;
+    min-width: 200px;
     font-size: 13px;
     padding: 10px 16px;
     background-color: white;
@@ -44,7 +44,7 @@
 #home-signup-button {
     margin: 5px;
     border-radius: 28px;
-    min-width: 150px;
+    min-width: 200px;
     font-size: 13px;
     padding: 10px 16px;
     background-color: #23272a;
@@ -57,6 +57,10 @@
 button:hover {
     border-style: inset;
     cursor: pointer;
+}
+
+button {
+    font-family: Whitney, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 #login-button {

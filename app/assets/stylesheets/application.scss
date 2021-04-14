@@ -22,7 +22,20 @@
 
  // Components
  @import "session_form.scss";
- @import "home.scss"
+ @import "home.scss";
+ @import "user_home.scss";
+ @import "private_servers.scss";
+
+ body {
+    padding: 0;
+    margin: 0;
+ }
+ 
+ #main {
+     padding: 0;
+     margin: 0;
+ }
+
 
  
  

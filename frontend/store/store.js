@@ -8,4 +8,6 @@ const configureStore = (preloadedState={}) => (
     createStore(RootReducer, preloadedState, composeWithDevTools(applyMiddleware(thunk)))
 )
 
+//trying this agin
+
 export default configureStore

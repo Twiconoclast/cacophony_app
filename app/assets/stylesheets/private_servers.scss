@@ -1,0 +1,310 @@
+.private-server-div {
+    display: flex;
+    flex-direction: column;
+    max-width: 240px;
+    min-width: 240px;
+    background-color: #2f3136;
+}
+
+#private-server-search {
+    height: 35px;
+    background-color: #2f3136;
+    border-bottom: 1px solid #2f3136;
+    border-right: 1px solid #2f3136;
+    border-bottom-style: outset;
+    display: flex;
+    width: 100%;
+    padding-left: 0px;
+}
+
+#private-search-bar {
+    padding-top: 5px;
+    position: relative;
+    width: 90%;
+}
+
+.search-for-friends {
+    width: 95%;
+    height: 75%;
+    border: 1px solid #202225;
+    border-radius: 5px;
+    background-color: #202225;
+    font-size: 13px;
+    color: #494b50;
+    padding-left: 10px;
+}
+
+#results {
+    position: absolute;
+    background-color: #2f3136;
+    color: whitesmoke;
+    list-style: none;
+    padding-inline-start: 0px;
+    width: 200px;
+    top: 15px;
+}
+
+.result-li {
+    border: 1px solid #202225;
+    width: 100%;
+    padding: 8px;
+    padding-left: 15px;
+    border-radius: 5px;
+}
+
+#private-server-div-footer {
+    align-self: baseline;
+    max-height: 25px;
+    width: 100%;
+    min-height: 5%;
+    border: 1px solid #292b2f;
+    // background-color: #292b2f;
+}
+
+#inner-footer-div {
+    max-height: 25px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    position: relative;
+    justify-content: space-around;
+    // background-color: #292b2f;
+}
+
+#footer-name {
+    position: absolute;
+    right: 114px;
+    top: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#logout-button {
+    position: absolute;
+    right: 20px;
+    background-color: #55537c;
+    color: whitesmoke;
+    border-radius: 5px;
+}
+
+.in-footer-logo {
+    position: absolute;
+    max-height: 20px;
+    background-color: #747f8d;
+    border-radius: 50%;
+    padding-bottom: 6px;
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-top: 6px;
+    top: -5px;
+    right: 196px;
+}
+
+#private-server-blank-space {
+    width: 100%;
+    height: 100%;
+}
+
+#private-server-holder {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.fa-child {
+    color: whitesmoke;
+    padding: 10px;
+    padding-right: 15px;
+    size: 15px;
+}
+
+#private-server-friend-label {
+    background-color: #393c43;
+    max-width: 95%;
+    border-radius: 5px;
+    color: whitesmoke;
+    min-height: 35px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 17px;
+    padding-top: 4px;
+    font-size: 15px;
+}
+
+#dmlabel {
+    color: #8e9294;
+    font-size: 11px;
+    font-weight: bolder;
+    padding: 5px;
+}
+
+#dmlabel:hover {
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+#dmul {
+    color: #8e9294;
+    padding-left: 0px;
+    width: 100%;
+}
+
+.private-server {
+    color: #8e9294;
+    margin: 0 auto;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.private-server a {
+    color: #8e9294;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.private-server-link:hover {
+    color: whitesmoke;
+}
+
+
+.private-server-link > .in-link-logo{
+    height: 15px;
+    padding: 4px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #6530aa;
+}
+
+#all-friends-label {
+    margin: 22px;
+    margin-top: 18px;
+    margin-bottom: 15px;
+    color: #9a9da1;
+    font-weight: bold;
+    font-size: 11px;
+    border-bottom: 1px solid #474b55;
+    border-bottom-style: inset;
+    padding-bottom: 12px;
+}
+
+#homepage-friend-list-items {
+    color: whitesmoke;
+    padding-left: 2px;
+    width: 100%;
+}
+
+.friend-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.friend-item-detail {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 5px;
+    padding-top: 1px;
+    margin-top: 0px;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.friend-item-detail:hover {
+    cursor: pointer;
+    background-color: #393c43;
+}
+
+.friend-item-detail:hover .user-icon {
+    background-color: #202225;
+}
+
+.friend-item-detail:hover .message-button {
+    background-color: #202225;
+}
+
+.friend-item-detail:hover .options-button {
+    background-color: #202225;
+}
+
+#name-and-letters {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+    font-weight: bolder;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+#friend-list-buttons {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 5px;
+    align-items: baseline;
+}
+
+.user-icon {
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    padding: 10px;
+    padding-left: 13px;
+    color: #b9bbbe;
+    background-color: #2f3136;
+}
+
+.friend-name {
+    height: 15px;
+    padding: 10px;
+}
+
+.message-button {
+    border-radius: 50%;
+    min-width: 30px;
+    max-height: 40px;
+    padding: 9px;
+    border-style: unset;
+    background-color: #2f3136;
+    color: #b9bbbe;
+    margin: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.options-button {
+    border-radius: 50%;
+    min-width: 30px;
+    min-height: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 5px;
+    // padding-left: 13px;
+    border-style: unset;
+    background-color: #2f3136;
+    color: #b9bbbe;
+    margin: 5px;
+    text-align: center;
+}
+
+.options-button:hover {
+    border-style: unset;
+}
+
+.message-button:hover {
+    border-style: unset;
+}

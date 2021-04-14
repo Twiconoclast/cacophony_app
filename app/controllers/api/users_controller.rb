@@ -1,9 +1,8 @@
 class Api::UsersController < ApplicationController
     before_action :require_logged_in, only: [:show, :destroy]
 
-    def index
-        @users = User.all
-        render :index
+    def search
+        @users = User.ransack(username_cont: params[:username]).result(distinct: true)
     end
  
     def create

@@ -1,6 +1,7 @@
 import React from 'react'
 import * as UserAPIUtil from '../../util/users_api_util'
-import * as ServerMembershipAPIUtil from '../../util/server_membership_api_util'
+import {createServerMembership} from '../../actions/server_membership_actions'
+import { connect } from 'react-redux';
 
 class UserSearchForm extends React.Component {
     constructor(props) {
@@ -17,12 +18,22 @@ class UserSearchForm extends React.Component {
     getAutoCompleteResults(e) {
         this.setState({username: e.currentTarget.value}, 
         () => {UserAPIUtil.fetchUserByUsername(this.state.username)
-            .then((result) => (this.setState({autoCompleteResults: result.users})))
+            .then((result) => {
+                const searchResult = result.users.filter((user) => (user.id != this.props.user.id))
+                return this.setState({autoCompleteResults: searchResult})})
         })
     }
 
-    handleSelect(id) {
-        ServerMembershipAPIUtil.createServerMembership({
+    handleBlur(e) {
+        e.preventDefault()
+        this.setState({username: '',
+        autoCompleteResults: []})
+    }
+
+    handleSelect(id, e) {
+        e.preventDefault()
+        console.log(this.props.serverId)
+        this.props.createServerMembership({
             server_id: this.props.serverId,
             member_id: id
         })
@@ -33,7 +44,7 @@ class UserSearchForm extends React.Component {
     render() {
 
         let autocompleteList = this.state.autoCompleteResults.map((result, idx) => (
-            <li key={idx} onClick={this.handleSelect(result.id)}>{result.username}</li>
+            <li key={idx} onBlur={this.handleBlur} onClick={(e) => this.handleSelect(result.id, e)}>{result.username}</li>
         ))
 
         return (
@@ -45,4 +56,12 @@ class UserSearchForm extends React.Component {
     }
 }
 
-export default UserSearchForm
+const mapSTP = (state) => ({
+    user: state.sessions.currentUser
+})
+
+const mapDTP = (dispatch) => ({
+    createServerMembership: (server_membership) => dispatch(createServerMembership(server_membership))
+})
+
+export default connect(mapSTP, mapDTP)(UserSearchForm)

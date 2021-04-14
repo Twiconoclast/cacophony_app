@@ -27,7 +27,7 @@ const sessionsReducer = (state=_nullSession, action) => {
             if (action.server.publicServers != null && !newState.currentUser.publicServers.includes(parseInt(Object.keys(action.server.publicServers)[0]))) {
                 newState.currentUser.publicServers.push(parseInt(Object.keys(action.server.publicServers)[0]))
             } else if (action.server.privateServers != null && !newState.currentUser.privateServers.includes(parseInt(Object.keys(action.server.privateServers)[0]))) {
-                newState.currentUser.privateServers.push((Object.keys(action.server.privateServers)[0]))
+                newState.currentUser.privateServers.push((parseInt(Object.keys(action.server.privateServers)[0])))
             }
             return newState
         default:

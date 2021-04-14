@@ -10,7 +10,9 @@ const mapSTP = (state, ownProps) => ({
     serverIdLinks: ownProps.serverIdLinks,
     publicServers: Object.values(state.entities.servers.publicServers),
     privateServers: Object.values(state.entities.servers.privateServers),
-    selectedServerId: ownProps.match.params.serverId
+    selectedServerId: ownProps.match.params.serverId,
+    selectedHomeBorderThing: !ownProps.match.params.serverId ? 'selected-home-border-thing' : '',
+    selectedHomeButton: !ownProps.match.params.serverId ? 'selected-home-button' : ''
 })
 
 const mapDTP = (dispatch) => ({

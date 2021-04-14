@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {fetchServers, fetchServer, createServer, deleteServer} from '../../actions/server_actions'
 import UserHome from './user_home'
-import {createServerMembership, deleteServerMembership} from '../../util/server_membership_api_util'
+import {createServerMembership, deleteServerMembership} from '../../actions/server_membership_actions'
 import {deleteSession} from '../../actions/session_actions'
 import {fetchUser, fetchUserByUsername} from '../../actions/user_actions'
 

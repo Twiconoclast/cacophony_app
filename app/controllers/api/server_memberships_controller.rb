@@ -1,8 +1,9 @@
 class Api::ServerMembershipsController < ApplicationController
     def create
+        @server = Server.find(params[:server_membership][:server_id])
         @server_membership = ServerMembership.new(server_membership_params)
         if @server_membership.save
-            render json: {success: ["Member added"]}, status: 200
+            render :show
         else
             render json: {errors: ["Something went wrong"]}, status: 422
         end
@@ -12,8 +13,10 @@ class Api::ServerMembershipsController < ApplicationController
         @user = User.find_by(id: params[:member_id])
         @server_membership = @user.server_membership.where(server_id: params[:server_id])
         if @server_membership
+            member_id = @server_membership.member_id
+            server_id = @server_membership.server_id
             delete @server_membership
-            render json: {success: ["Membership Removed"]}, status: 200
+            render json: {server_membership: {server_id: server_id, member_id: member_id}}
         else
             render json: {errors: ["Something went wrong"]}, status: 422
         end

@@ -43,16 +43,36 @@ class PublicServerIndex extends React.Component {
         }
 
         this.serverLinks = this.props.publicServers.map((server) => (
-            <li className={this.props.selectedServerId == server.id ? `selected-public-server public-server` : `public-server`} key={server.id} title={server.serverName}><Link to={`/channels/${server.id}/${server.defaultChannelId}`}><div>{splitSliceUpCase(server.serverName)}</div></Link></li>
+            <li className='public-server' key={server.id} title={server.serverName}>
+                <div id={this.props.selectedServerId == server.id ? `selected-public-server-border-thing` : ``} className='little-border-thing'></div>
+                <div className='public-server-div' id={this.props.selectedServerId == server.id ? `selected-public-server-div` : ``} >
+                    <Link className='public-server-link' to={`/channels/${server.id}/${server.defaultChannelId}`}>
+                    <div className='server-name'>{splitSliceUpCase(server.serverName)}</div>
+                    </Link>
+                </div>
+            </li>
         ))
                 
 
         return (
             <div>
-                <div id='home-button'><Link to={`/channels/@me`}><img src={window.whiteontback} className='home-button-logo' alt="home"/></Link></div>
-                <ul>{this.serverLinks}</ul>
-                <button onClick={(e) => this.toggle(e)}>I open up the form to create a new server</button>
-                <div className={this.state.hidden ? 'hidden' : ''}>
+                <ul className='server-links-ul'>
+                    <li className='home-li'>
+                        <div id={this.props.selectedHomeBorderThing} className='little-border-thing'></div>
+                        <div id='around-home'>
+                            <div id={this.props.selectedHomeButton} className='home-button' >
+                                <Link to={`/channels/@me`}><img src={window.whiteontback} className='home-button-logo' alt="home"/>
+                                </Link>
+                            </div>
+                        </div>
+                    </li>
+                    {this.serverLinks}
+                    <li>
+                        <div className='little-border-thing'></div>
+                        <button id='form-button' onClick={(e) => this.toggle(e)}>+</button>
+                    </li>
+                </ul>
+                <div className={this.state.hidden ? 'hidden' : 'public-server-box'}>
                     <PublicServerForm ownerId={this.props.user.id} createServer={this.props.createServer} closeForm={this.toggle}/>
                 </div>
                 {/* <ul>{this.selectedServerIdMembers}</ul> */}
@@ -60,5 +80,6 @@ class PublicServerIndex extends React.Component {
         )
     }
 }
+
 
 export default PublicServerIndex

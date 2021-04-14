@@ -31,18 +31,31 @@ class PublicServerForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='form-centerer'>
                 <div className='public-server-form-box'>
-                    <button className='close-button' onClick={this.props.closeForm}>X</button>
-                    <h2>Create a server</h2>
-                    <p>Your server is where you and your friends hang out. Make yours and start talking.</p>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>SERVER NAME
-                            <input type="text" value={this.state.server_name} onChange={this.handleChange('server_name')}/>
-                        </label>
-                        <button>Create</button>
-                    </form>
-                    <button onClick={this.props.closeForm}>Back</button>
+                    <div id='form-contents'>
+                        <header id='form-close-button'>
+                            <button className='close-button' onClick={this.props.closeForm}>X</button>
+                        </header>
+                        <div id='form-text'>
+                            <h2>Create a server</h2>
+                            <p>Your server is where you and your friends hang out. Make yours and start talking.</p>
+                        </div>
+                        <div id='form-ship-div'><img id='ship-on-form' src={window.ship} alt="ship"/></div>
+                        <form className='actual-server-form' onSubmit={this.handleSubmit}>
+                            <div id='server-form-input-div'>
+                                <label>SERVER NAME</label>
+                                <input type="text" value={this.state.server_name} placeholder='Your amazing server' onChange={this.handleChange('server_name')}/>
+                                <p>By creating a server, you agree to our community guildlines</p>
+                            </div>
+                            <footer className='button-footer'>
+                                <div className='button-footer-div'>
+                                    <button className='create-button' type='submit'>Create</button>
+                                    <button className='back-button' onClick={this.props.closeForm}>Back</button>
+                                </div>
+                            </footer>
+                        </form>
+                    </div>
                 </div>
             </div>
         )

@@ -41,18 +41,19 @@ class PrivateServerIndex extends React.Component {
 
 
         this.serverLinks = this.props.privateServers.map((server) => (
-            <li className={this.props.selectedServerId == server.id ? `selected-private-server private-server` : `private-server`} key={server.id} title={server.serverName}><Link to={`/channels/${server.id}/${server.defaultChannelId}`}><div>{server.serverName}</div></Link></li>
+            <li className={this.props.selectedServerId == server.id ? `selected-private-server private-server` : `private-server`} key={server.id} title={server.serverName}><Link className='private-server-link' to={`/channels/${server.id}/${server.defaultChannelId}`}><img src={window.whiteontback} className='in-link-logo' alt="home"/><div>{server.serverName}</div></Link></li>
         ))
         
         this.selectedServerIdMembers = this.props.privateServers.map((server) => {
             if (this.props.selectedServerId == server.id) {
                 return (server.members.map((member) => {
                     if (member.id != this.props.user.id) {
+                        console.log(member)
                         return <li key={member.id} className='server-member-list-item' title={member.username}>
-                            <div className='dm-friend-item-detail' onClick={() => this.friendClick(member.name, member.id)}>
+                            <div className='dm-friend-item-detail'>
                                 <div className='user-icon'>{splitSliceUpCase(member.username)}</div>
                                 <div>{member.username}</div>
-                                <button onClick={() => this.friendClick(member.name, member.id)} className='add-direct-message-button'>+</button>
+                                <button onClick={() => this.friendClick(member.username, member.id)} className='add-direct-message-button'>+</button>
                             </div>
                         </li>}
                     })
@@ -60,10 +61,11 @@ class PrivateServerIndex extends React.Component {
             })
 
         return (
-            <div>
-                <div><i className="fas fa-child"></i> Friends</div>
-                <ul>{this.serverLinks}</ul>
-                <div><img src={window.whiteontback} className='home-button-logo' alt="home"/> {this.props.user.username} <button onClick={this.handleLogOut}>Log Out</button></div>
+            <div id='private-server-blank-space'>
+                <div id='private-server-friend-label'><i className="fas fa-child"></i> Friends</div>
+                <span id='dmlabel'>DIRECT MESSAGES</span>
+                <ul id='dmul'>{this.serverLinks}</ul>
+                
                 {/* <ul>{this.selectedServerIdMembers}</ul> */}
             </div>
         )

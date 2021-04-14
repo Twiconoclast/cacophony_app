@@ -1,6 +1,7 @@
 import React from 'react'
 import PublicServerIndexContainer from '../servers/public_server_index_container'
 import PrivateServerIndexContainer from '../servers/private_server_index_container'
+import UserSearchFormContainer from '../users/user_search_form'
 import UserSearchForm from '../users/user_search_form'
 
 class ChannelView extends React.Component {
@@ -43,17 +44,14 @@ class ChannelView extends React.Component {
         }
         
         this.selectedServerIdMembers = this.props.publicServers.concat(this.props.privateServers).map((server) => {
-            console.log(this.props.publicServers.concat(this.props.privateServers))
-            console.log(server.id)
             if (this.props.serverId == server.id) {
-                console.log(server.members)
                 return (server.members.map((member) => {
                     if (member.id != this.props.user.id) {
                         return <li key={member.id} className='server-member-list-item' title={member.username}>
-                            <div className='dm-friend-item-detail' onClick={() => this.friendClick(member.name, member.id)}>
+                            <div className='dm-friend-item-detail'>
                                 <div className='user-icon'>{splitSliceUpCase(member.username)}</div>
                                 <div>{member.username}</div>
-                                <button onClick={() => this.friendClick(member.name, member.id)} className='add-direct-message-button'>+</button>
+                                <button onClick={() => this.friendClick(member.username, member.id)} className='add-direct-message-button'>+</button>
                             </div>
                         </li>}
                     })
@@ -62,11 +60,13 @@ class ChannelView extends React.Component {
 
         return (
             <div>
-                <div><PublicServerIndexContainer></PublicServerIndexContainer></div>
+                <div className="serverbar">
+                    <PublicServerIndexContainer></PublicServerIndexContainer>
+                </div>
                 
                 <div className={this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : ''}><PrivateServerIndexContainer/></div>
                 <div className={!this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : ''}>I hold channels when a public server is selected
-                    <UserSearchForm serverId={this.props.serverId}></UserSearchForm> 
+                    <UserSearchFormContainer serverId={this.props.serverId}></UserSearchFormContainer> 
                     <button className={!this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'delete-button'} onClick={() => {
                         this.deleteServer(this.props.serverId)
                         this.props.history.push('/channels/@me')

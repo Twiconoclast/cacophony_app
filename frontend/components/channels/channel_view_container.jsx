@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import {deleteSession} from '../../actions/session_actions'
 import {fetchUserByUsername, fetchUser, removeErrors} from '../../actions/user_actions'
 import {fetchServers, fetchServer, createServer, deleteServer} from '../../actions/server_actions'
-import {createServerMembership, deleteServerMembership} from '../../util/server_membership_api_util'
+import {createServerMembership, deleteServerMembership} from '../../actions/server_membership_actions'
 import ChannelView from './channel_view'
 
 const mapSTP = (state, ownProps) => ({

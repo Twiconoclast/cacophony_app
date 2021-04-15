@@ -3,6 +3,8 @@ import PublicServerIndexContainer from '../servers/public_server_index_container
 import PrivateServerIndexContainer from '../servers/private_server_index_container'
 import UserSearchFormContainer from '../users/user_search_form'
 import UserSearchForm from '../users/user_search_form'
+import PrivateServerUserSearchContainer from '../users/private_server_user_search_container'
+import ChannelIndexContainer from './channel_index_container'
 
 class ChannelView extends React.Component {
     constructor(props) {
@@ -10,9 +12,16 @@ class ChannelView extends React.Component {
         this.deleteServer = this.props.deleteServer.bind(this)
         this.friendClick = this.friendClick.bind(this)
         this.handleLogOut = this.handleLogOut.bind(this)
+        
+        this.state = {
+            channelId: this.props.channelId
+        }
     }
 
+
     componentDidMount() {
+        this.props.fetchChannels(this.props.serverId)
+        this.props.fetchChannel(this.props.channelId)
         this.props.fetchServer(this.props.serverId)
     }
 
@@ -58,23 +67,70 @@ class ChannelView extends React.Component {
                 )}
             })
 
+        let headerContent;
+            if (this.props.selectedChannel){
+                if (this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
+                    headerContent = <div className='server-view-header'>
+                                        <div className='channel-name'><i className="fas fa-hashtag"></i>{this.props.selectedChannel.channelName}</div>
+                                        <UserSearchFormContainer serverId={this.props.serverId}></UserSearchFormContainer> 
+                                    </div>
+                } else if (!this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
+                    headerContent = <div className='server-view-header'>
+                                        <div className='channel-name'><i className="fas fa-hashtag"></i>
+                                        {this.props.selectedChannel.channelName}</div>
+                                    </div>
+                }
+            }
+
+            let serverName;
+            if (this.props.server) {
+                serverName = this.props.server.serverName.slice(0, 1).toUpperCase() + this.props.server.serverName.slice(1)
+            }
+
         return (
-            <div>
+            <div className='homepage'>
                 <div className="serverbar">
                     <PublicServerIndexContainer></PublicServerIndexContainer>
                 </div>
                 
-                <div className={this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : ''}><PrivateServerIndexContainer/></div>
-                <div className={!this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : ''}>I hold channels when a public server is selected
-                    <UserSearchFormContainer serverId={this.props.serverId}></UserSearchFormContainer> 
-                    <button className={!this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'delete-button'} onClick={() => {
-                        this.deleteServer(this.props.serverId)
-                        this.props.history.push('/channels/@me')
-                    }}>Delete Server</button>
-                    <div><img src={window.whiteontback} className='home-button-logo' alt="home"/> {this.props.user.username} <button onClick={this.handleLogOut}>Log Out</button></div>
+                <div className={this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'private-server-div'}>
+                    <header className="private-server-search"><PrivateServerUserSearchContainer/></header>
+                    <div className='private-server-holder'>
+                        <PrivateServerIndexContainer/>
+                        <footer className='private-server-div-footer'>
+                            <div className='inner-footer-div'>
+                                <img src={window.whiteontback} className='in-footer-logo' alt="home"/> <div className='footer-name'>{this.props.user.username}</div>
+                                <button className='logout-button' onClick={this.handleLogOut}>Log Out</button>
+                            </div>
+                        </footer>
+                    </div>
                 </div>
-                <div>I hold channel messages</div>
-                <div><ul>{this.selectedServerIdMembers}</ul></div>
+                <div className={!this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'private-server-div'}>
+                    <header className="selected-public-server-name-header">{serverName}</header>
+                    <div id='server-channel-holder'>
+                        <ChannelIndexContainer/>
+                        <button className={!this.props.ownedServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'delete-button'} onClick={() => {this.deleteServer(this.props.serverId)
+                        this.props.history.push('/channels/@me')}}>Delete Server</button>
+                        <footer className='private-server-div-footer'>
+                            <div className='inner-footer-div'>
+                                <img src={window.whiteontback} className='in-footer-logo' alt="home"/> 
+                                <div className='footer-name'>{this.props.user.username}</div>
+                                <button className='logout-button' onClick={this.handleLogOut}>Log Out</button>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+                <div className='header-and-main'>
+                    <header className='main-header'>{headerContent}</header>
+                    
+                    <div className='middle-main'>
+                        <div className='middle-home'>
+                            <div>I hold channel messages</div>
+                        </div>
+                    <div className='right-most-div'><ul>{this.selectedServerIdMembers}</ul></div>
+                    </div>   
+                
+                </div>
             </div>
         )
     }

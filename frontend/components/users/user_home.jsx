@@ -95,25 +95,25 @@ class UserHome extends React.Component {
         ))
 
         return (           
-            <div id='homepage'>
+            <div className='homepage'>
                 <div className="serverbar">
                     <PublicServerIndexContainer serverIdLinks={this.serverIdLinks}/>
                 </div>
                 <div className='private-server-div'>
-                    <header id="private-server-search"><PrivateServerUserSearchContainer/></header>
-                    <div id='private-server-holder'>
+                    <header className="private-server-search"><PrivateServerUserSearchContainer/></header>
+                    <div className='private-server-holder'>
                         <PrivateServerIndexContainer serverIdLinks={this.privateServerIdLinks}/>
-                        <footer id='private-server-div-footer'>
-                            <div id='inner-footer-div'>
-                                <img src={window.whiteontback} className='in-footer-logo' alt="home"/> <div id='footer-name'>{this.props.user.username}</div>
-                                <button id='logout-button' onClick={this.handleLogOut}>Log Out</button>
+                        <footer className='private-server-div-footer'>
+                            <div className='inner-footer-div'>
+                                <img src={window.whiteontback} className='in-footer-logo' alt="home"/> <div className='footer-name'>{this.props.user.username}</div>
+                                <button className='logout-button' onClick={this.handleLogOut}>Log Out</button>
                             </div>
                         </footer>
                     </div>
                 </div>
                 <div className='header-and-main'>
-                    <header id='main-header'></header>
-                    <div id='middle-main'>
+                    <header className='main-header'></header>
+                    <div className='middle-main'>
                         <div className='middle-home'>
                             <div className='home-friends-div'>
                                 <div id='all-friends-label'>ALL FRIENDS - {this.fSMList.length}</div>

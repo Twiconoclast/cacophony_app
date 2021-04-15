@@ -6,13 +6,18 @@ import {fetchUserByUsername, fetchUser, removeErrors} from '../../actions/user_a
 import {fetchServers, fetchServer, createServer, deleteServer} from '../../actions/server_actions'
 import {createServerMembership, deleteServerMembership} from '../../actions/server_membership_actions'
 import ChannelView from './channel_view'
+import {fetchChannels, fetchChannel, createChannel, deleteChannel} from '../../actions/channel_actions'
 
 const mapSTP = (state, ownProps) => ({
-    server: state.entities.servers[ownProps.match.params.serverId],
+    key: ownProps.match.params.channelId,
+    server: state.entities.servers.publicServers[ownProps.match.params.serverId],
+    selectedChannel: state.entities.channels[ownProps.match.params.channelId],
     publicServers: Object.values(state.entities.servers.publicServers),
     privateServers: Object.values(state.entities.servers.privateServers),
     serverId: ownProps.match.params.serverId,
-    user: state.sessions.currentUser
+    channelId: ownProps.match.params.channelId,
+    user: state.sessions.currentUser,
+    ownedServers: state.sessions.currentUser.ownedServers
     // members: state.entities.servers[ownProps.match.params.serverId].members
 })
 
@@ -26,7 +31,11 @@ const mapDTP = (dispatch) => ({
     createServer: (server) => dispatch(createServer(server)),
     deleteServer: (serverId) => dispatch(deleteServer(serverId)),
     createServerMembership: (server_membership) => dispatch(createServerMembership(server_membership)),
-    deleteServerMembership: (member_id, server_id) => dispatch(deleteServerMembership(member_id, server_id))
+    deleteServerMembership: (member_id, server_id) => dispatch(deleteServerMembership(member_id, server_id)),
+    fetchChannels: (server_id) => dispatch(fetchChannels(server_id)),
+    fetchChannel: (channelId, server_id) => dispatch(fetchChannel(channelId, server_id)),
+    createChannel: (channel) => dispatch(createChannel(channel)),
+    deleteChannel: (channelId) => dispatch(deleteChannel(channelId))
 })
 
 export default withRouter(connect(mapSTP, mapDTP)(ChannelView))

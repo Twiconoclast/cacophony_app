@@ -1,0 +1,92 @@
+#server-channel-holder {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.selected-public-server-name-header {
+    height: 35px;
+    background-color: #2f3136;
+    border-bottom: 1px solid #2f3136;
+    border-right: 1px solid #2f3136;
+    border-bottom-style: outset;
+    display: flex;
+    width: 100%;
+    padding-left: 0px;
+}
+
+#channel-link-ul {
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin-right: 0;
+    margin-inline-end: 0;
+    margin-right: 10px;
+    margin-left: 15px;
+}
+
+li.selected-channel {
+    background-color: #393c43;
+    color: whitesmoke;
+    font-size: 14px;
+}
+
+ul .channel {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    color: #829297;
+    border-radius: 5px;
+    padding: 4px;
+    margin-top: 2px
+}
+
+.channel:hover {
+    background-color: #393c43;
+}
+
+.channel-link {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    color: #829297;
+    margin: 0 auto;
+    align-items: baseline;
+    color: whitesmoke
+}
+
+a .channel-name {
+    color: whitesmoke;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.fa-hashtag {
+    color: #829297;
+    padding: 7px;
+}
+
+a .delete-channel-button {
+    height: 75%;
+    padding-top: 2px;
+    background-color: #2f3136;
+    border-style: unset;
+    color: whitesmoke;
+}
+
+.main-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.server-view-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+}

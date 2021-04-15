@@ -6,7 +6,7 @@
     background-color: #2f3136;
 }
 
-#private-server-search {
+.private-server-search {
     height: 35px;
     background-color: #2f3136;
     border-bottom: 1px solid #2f3136;
@@ -52,7 +52,7 @@
     border-radius: 5px;
 }
 
-#private-server-div-footer {
+.private-server-div-footer {
     align-self: baseline;
     max-height: 25px;
     width: 100%;
@@ -61,7 +61,7 @@
     // background-color: #292b2f;
 }
 
-#inner-footer-div {
+.inner-footer-div {
     max-height: 25px;
     margin-top: 15px;
     display: flex;
@@ -72,7 +72,7 @@
     // background-color: #292b2f;
 }
 
-#footer-name {
+.footer-name {
     position: absolute;
     right: 114px;
     top: 4px;
@@ -80,7 +80,7 @@
     font-weight: bold;
 }
 
-#logout-button {
+.logout-button {
     position: absolute;
     right: 20px;
     background-color: #55537c;
@@ -101,12 +101,12 @@
     right: 196px;
 }
 
-#private-server-blank-space {
+.private-server-blank-space {
     width: 100%;
     height: 100%;
 }
 
-#private-server-holder {
+.private-server-holder {
     height: 100%;
     width: 100%;
     display: flex;
@@ -134,14 +134,14 @@
     font-size: 15px;
 }
 
-#dmlabel {
+.dmlabel {
     color: #8e9294;
     font-size: 11px;
     font-weight: bolder;
     padding: 5px;
 }
 
-#dmlabel:hover {
+.dmlabel:hover {
     color: whitesmoke;
     cursor: pointer;
 }

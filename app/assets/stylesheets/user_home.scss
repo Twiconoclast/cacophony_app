@@ -108,7 +108,7 @@ ul {
 
 
 
-#homepage {
+.homepage {
     height:100vh;
     background-color: darkcyan;
     position: relative;
@@ -265,7 +265,7 @@ ul {
     color: black;
 }
 
-#middle-main {
+.middle-main {
     display: flex;
     justify-content: space-between;
     height: 100%;
@@ -279,7 +279,7 @@ ul {
     height:100%;
 }
 
-#main-header {
+.main-header {
     height: 35px;
     background-color: #36393f;
     border-bottom: 1px solid #2f3136;
@@ -309,7 +309,7 @@ ul {
     border-radius: 5px;
     box-sizing: border-box;
     margin:auto;
-    left: 10%;
+    left: 16%;
     top: 45%;
     transform: translate(-50%, -50%);
     z-index: 3;

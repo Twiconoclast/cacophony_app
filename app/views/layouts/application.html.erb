@@ -6,6 +6,8 @@
     <% if logged_in? %>
       <%private_servers = Array.new%>
       <%public_servers = Array.new%>
+      <% owned_servers = current_user.servers.select {|server| server.owner_id == current_user.id}%>
+      <% owned_servers.map! {|server| server.id} %>
       <% private_server_friends = Array.new %>
       <%current_user.servers.each do |server|%>
           <%if server.private == true%>
@@ -27,7 +29,8 @@
           "privateServers": <%=private_servers.uniq%>,
           "publicServers": <%=public_servers.uniq%>,
           "fellowServerMembers": <%=friends.uniq%>,
-          "privateServerFriends": <%=private_server_friends.uniq%>}
+          "privateServerFriends": <%=private_server_friends.uniq%>,
+          "ownedServers": <%=owned_servers.uniq%>}
        </script>
     <% end %>
     <script type="text/javascript">

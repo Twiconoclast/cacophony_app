@@ -12,7 +12,7 @@ const channelsReducer = (state={}, action) => {
             newState[Object.keys(action.channel)[0]] = Object.values(action.channel)[0]
             return newState
         case REMOVE_CHANNEL:
-            delete newState[action.channelId]
+            delete newState[action.channelId.channelId]
             return newState
         case LOGOUT_CURRENT_USER:
             return {}

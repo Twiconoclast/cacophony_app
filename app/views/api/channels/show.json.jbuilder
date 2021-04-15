@@ -4,6 +4,7 @@ if @server.private
         json.id @channel.id
         json.server_id @channel.server_id
         json.owner_id @channel.owner_id
+        json.private 'private'
         json.messages @channel.messages.each do |message|
             json.extract! message, :id, :author_id, :channel_id, :body
         end
@@ -14,6 +15,7 @@ else
         json.id @channel.id
         json.server_id @channel.server_id
         json.owner_id @channel.owner_id
+        json.private 'public'
         json.messages @channel.messages.each do |message|
             json.extract! message, :id, :author_id, :channel_id, :body
         end

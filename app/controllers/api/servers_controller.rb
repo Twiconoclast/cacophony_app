@@ -11,6 +11,7 @@ class Api::ServersController < ApplicationController
             @channel = Channel.new(channel_name: 'general', owner_id: @server.owner_id, server_id: @server.id)
             @channel.save!
             @server.default_channel_id = @channel.id
+            @server.save
             @server_membership = ServerMembership.new(server_id: @server.id, member_id: @server.owner_id)
             if @server.recipient_id
                 @recipient_membership = ServerMembership.new(server_id: @server.id, member_id: @server.recipient_id)

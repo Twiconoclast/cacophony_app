@@ -1,6 +1,7 @@
 import {RECEIVE_SERVERS, RECEIVE_SERVER, REMOVE_SERVER} from '../actions/server_actions'
 import {LOGOUT_CURRENT_USER} from '../actions/session_actions'
 import {RECEIVE_SERVER_MEMBERSHIP, REMOVE_SERVER_MEMBERSHIP} from '../actions/server_membership_actions'
+import {RECEIVE_CHANNEL, REMOVE_CHANNEL} from '../actions/channel_actions'
 
 const preState = {
     publicServers: {},

@@ -8,7 +8,8 @@ class ChannelIndex extends React.Component {
         this.state = {
                 channel_name: '',
                 server_id: this.props.serverId,
-                owner_id: this.props.user.id
+                owner_id: this.props.user.id,
+                deleted:false
             }
         this.handleChangeChannel = this.handleChangeChannel.bind(this)
         this.channelCreate = this.channelCreate.bind(this)
@@ -17,6 +18,7 @@ class ChannelIndex extends React.Component {
 
     componentDidMount() {
         this.props.fetchChannels(this.props.serverId)
+        this.props.fetchServer(this.props.serverId)
     }
 
     handleChangeChannel(type) {
@@ -28,7 +30,6 @@ class ChannelIndex extends React.Component {
         this.props.createChannel(this.state)
             .then((response) => {
                 this.props.history.push(`/channels/${this.props.serverId}/${Object.values(response.channel)[0].id}`)
-                this.setState({channel_name: ''})
             })
     }
 
@@ -49,7 +50,9 @@ class ChannelIndex extends React.Component {
                     </Link>
                     <button title='Delete Channel' className={channel.id == this.props.server.defaultChannelId ? 'hidden' : 'delete-channel-button'} onClick={() => {
                         this.props.deleteChannel(channel.id)
-                            .then(() => this.props.history.push(`/channels/${this.props.serverId}/${this.props.server.defaultChannelId}`))}}>-</button>
+                            .then(() => this.props.fetchServer(this.props.serverId))
+                            .then(() => this.props.history.push(`/channels/${this.props.serverId}/${this.props.server.defaultChannelId}`))
+                        }}>-</button>
                 </li>
             ))
         }

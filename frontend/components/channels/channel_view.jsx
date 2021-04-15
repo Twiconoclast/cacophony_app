@@ -13,9 +13,9 @@ class ChannelView extends React.Component {
         this.friendClick = this.friendClick.bind(this)
         this.handleLogOut = this.handleLogOut.bind(this)
         
-        this.state = {
-            channelId: this.props.channelId
-        }
+        // this.state = {
+        //     channelId: this.props.channelId
+        // }
     }
 
 

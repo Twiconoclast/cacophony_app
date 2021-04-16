@@ -10,35 +10,35 @@ class MessagesIndex extends React.Component {
         // this.toggle = this.toggle.bind(this)
     }
 
-    componentDidMount() {
-        App.cable.subscriptions.create(
-          { channel: "ChatChannel" },
-          {
-            received: data => {
-              switch (data.type) {
-                case "message":
-                  this.setState({
-                    messages: this.state.messages.concat(data.message)
-                  });
-                  break;
-                case "messages":
-                  this.setState({ messages: data.messages });
-                  break;
-              }
-            },
-            speak: function (data) { return this.perform("speak", data) },
-            load: function (data) { return this.perform("load", data) }
-          }
-        );
-      }
+    // componentDidMount() {
+    //     App.cable.subscriptions.create(
+    //       { channel: "ChatChannel" },
+    //       {
+    //         received: data => {
+    //           switch (data.type) {
+    //             case "message":
+    //               this.setState({
+    //                 messages: this.state.messages.concat(data.message)
+    //               });
+    //               break;
+    //             case "messages":
+    //               this.setState({ messages: data.messages });
+    //               break;
+    //           }
+    //         },
+    //         speak: function (data) { return this.perform("speak", data) },
+    //         load: function (data) { return this.perform("load", data) }
+    //       }
+    //     );
+    //   }
       
-      loadChat(e) {
-        e.preventDefault();
-        App.cable.subscriptions.subscriptions[0].load(this.props.channelId);
-      }
-       componentDidUpdate() {
-        // this.bottom.current.scrollIntoView();
-      }
+    //   loadChat(e) {
+    //     e.preventDefault();
+    //     App.cable.subscriptions.subscriptions[0].load(this.props.channelId);
+    //   }
+    //    componentDidUpdate() {
+    //     // this.bottom.current.scrollIntoView();
+    //   }
      
 
     render() {
@@ -54,7 +54,7 @@ class MessagesIndex extends React.Component {
 
         return(
             <div>
-                <button className="load-button" onClick={this.loadChat.bind(this)}>Load Chat History</button>
+                {/* <button className="load-button" onClick={this.loadChat.bind(this)}>Load Chat History</button> */}
                 <ul>{messageItems}</ul>
                 <CreateMessageFormContainer/>
             </div>

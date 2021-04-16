@@ -7,6 +7,7 @@ import {fetchServers, fetchServer, createServer, deleteServer} from '../../actio
 import {createServerMembership, deleteServerMembership} from '../../actions/server_membership_actions'
 import ChannelView from './channel_view'
 import {fetchChannels, fetchChannel, createChannel, deleteChannel} from '../../actions/channel_actions'
+import {fetchMessages, fetchMessage, createMessage, updateMessage, deleteMessage} from '../../actions/message_actions'
 
 const mapSTP = (state, ownProps) => ({
     key: ownProps.match.params.channelId,
@@ -17,7 +18,8 @@ const mapSTP = (state, ownProps) => ({
     serverId: ownProps.match.params.serverId,
     channelId: ownProps.match.params.channelId,
     user: state.sessions.currentUser,
-    ownedServers: state.sessions.currentUser.ownedServers
+    ownedServers: state.sessions.currentUser.ownedServers,
+    messages: Object.values(state.entities.messages)
     // members: state.entities.servers[ownProps.match.params.serverId].members
 })
 
@@ -35,7 +37,12 @@ const mapDTP = (dispatch) => ({
     fetchChannels: (server_id) => dispatch(fetchChannels(server_id)),
     fetchChannel: (channelId, server_id) => dispatch(fetchChannel(channelId, server_id)),
     createChannel: (channel) => dispatch(createChannel(channel)),
-    deleteChannel: (channelId) => dispatch(deleteChannel(channelId))
+    deleteChannel: (channelId) => dispatch(deleteChannel(channelId)),
+    fetchMessages: (channel_id) => dispatch(fetchMessages(channel_id)),
+    fetchMessage: (messageId) => dispatch(fetchMessage(messageId)),
+    createMessage: (message) => dispatch(createMessage(message)),
+    updateMessage: (message) => dispatch(updateMessage(message)),
+    deleteMessage: (messageId) => dispatch(deleteMessage(messageId))
 })
 
 export default withRouter(connect(mapSTP, mapDTP)(ChannelView))

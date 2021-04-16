@@ -5,6 +5,7 @@ import UserSearchFormContainer from '../users/user_search_form'
 import UserSearchForm from '../users/user_search_form'
 import PrivateServerUserSearchContainer from '../users/private_server_user_search_container'
 import ChannelIndexContainer from './channel_index_container'
+import MessagesIndexContainer from '../messages/messages_index_container'
 
 class ChannelView extends React.Component {
     constructor(props) {
@@ -20,9 +21,10 @@ class ChannelView extends React.Component {
 
 
     componentDidMount() {
+        this.props.fetchServer(this.props.serverId)
         this.props.fetchChannels(this.props.serverId)
         this.props.fetchChannel(this.props.channelId)
-        this.props.fetchServer(this.props.serverId)
+        this.props.fetchMessages(this.props.channelId)
     }
 
     friendClick(name, id) {
@@ -68,24 +70,24 @@ class ChannelView extends React.Component {
             })
 
         let headerContent;
-            if (this.props.selectedChannel){
-                if (this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
-                    headerContent = <div className='server-view-header'>
-                                        <div className='channel-name'><i className="fas fa-hashtag"></i>{this.props.selectedChannel.channelName}</div>
-                                        <UserSearchFormContainer serverId={this.props.serverId}></UserSearchFormContainer> 
-                                    </div>
-                } else if (!this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
-                    headerContent = <div className='server-view-header'>
-                                        <div className='channel-name'><i className="fas fa-hashtag"></i>
-                                        {this.props.selectedChannel.channelName}</div>
-                                    </div>
+        if (this.props.selectedChannel){
+            if (this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
+                headerContent = <div className='server-view-header'>
+                                    <div className='channel-name'><i className="fas fa-hashtag"></i>{this.props.selectedChannel.channelName}</div>
+                                    <UserSearchFormContainer serverId={this.props.serverId}></UserSearchFormContainer> 
+                                </div>
+            } else if (!this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
+                headerContent = <div className='server-view-header'>
+                                    <div className='channel-name'><i className="fas fa-hashtag"></i>
+                                    {this.props.selectedChannel.channelName}</div>
+                                </div>
                 }
             }
 
-            let serverName;
-            if (this.props.server) {
-                serverName = this.props.server.serverName.slice(0, 1).toUpperCase() + this.props.server.serverName.slice(1)
-            }
+        let serverName;
+        if (this.props.server) {
+            serverName = this.props.server.serverName.slice(0, 1).toUpperCase() + this.props.server.serverName.slice(1)
+        }
 
         return (
             <div className='homepage'>
@@ -125,7 +127,9 @@ class ChannelView extends React.Component {
                     
                     <div className='middle-main'>
                         <div className='middle-home'>
-                            <div>I hold channel messages</div>
+                            <div>
+                                <MessagesIndexContainer/>
+                            </div>
                         </div>
                     <div className='right-most-div'><ul>{this.selectedServerIdMembers}</ul></div>
                     </div>   

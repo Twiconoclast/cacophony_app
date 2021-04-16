@@ -114,7 +114,7 @@ class UserHome extends React.Component {
                 <div className='header-and-main'>
                     <header className='main-header'></header>
                     <div className='middle-main'>
-                        <div className='middle-home'>
+                        <div className='middle-home-home'>
                             <div className='home-friends-div'>
                                 <div id='all-friends-label'>ALL FRIENDS - {this.fSMList.length}</div>
                                 <ul id='homepage-friend-list-items'>{this.fLItems}</ul>

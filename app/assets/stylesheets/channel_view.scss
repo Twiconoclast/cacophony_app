@@ -66,6 +66,17 @@ a .channel-name {
     font-size: 15px;
 }
 
+.channel-name-top {
+    color: whitesmoke;
+    margin-left: 10px;
+    font-size: 15px;
+    padding-top: 3px;
+    font-weight: bold;
+    display: flex;
+    min-width: 250px;
+    align-items: baseline;
+}
+
 .fa-hashtag {
     color: #829297;
     padding: 7px;

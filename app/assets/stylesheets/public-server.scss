@@ -43,11 +43,16 @@ div #channel-link-ul {
 }
 
 .delete-channel-button {
-    background-color: #393c43;
+    background-color: #2f3136;
     border-style: unset;
     height: 22px;
+    padding-bottom: 25px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 50%;
     font-weight: bolder;
     font-size: 20px;
+    align-self: center;
 }
 
 .message-form {
@@ -68,7 +73,7 @@ div #channel-link-ul {
     width: 100%;
 }
 
-.fa-paper-plane {
+#create-message-plane {
     margin-right: 0;
     margin-left: none;
     padding-left: 0;
@@ -77,6 +82,16 @@ div #channel-link-ul {
     right: 45px;
     height: 45px;
 }
+
+// .fa-paper-plane-edit {
+//     margin-right: 0;
+//     margin-left: none;
+//     padding-left: 0;
+//     position: absolute;
+//     bottom: 46px;
+//     right: 45px;
+//     height: 45px;
+// }
 
 .load-button {
     position: relative;

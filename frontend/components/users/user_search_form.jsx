@@ -49,7 +49,7 @@ class UserSearchForm extends React.Component {
 
         return (
             <div className='private-search-bar'>
-                <input className='search-for-friends' ref={ (input) => { this.searchBar = input } } value={ this.state.username } onChange={ this.getAutoCompleteResults.bind(this) } type='search' placeholder='Search...' />
+                <input className='search-for-friends-to-add' ref={ (input) => { this.searchBar = input } } value={ this.state.username } onChange={ this.getAutoCompleteResults.bind(this) } type='search' placeholder='Search...' />
                 <ul className='results' >{autocompleteList}</ul>
             </div>
         )

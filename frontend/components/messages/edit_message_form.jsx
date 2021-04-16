@@ -35,8 +35,8 @@ class EditMessageForm extends React.Component {
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.body} onChange={this.handleChange('body')}/>
-                    <button><i className="fas fa-paper-plane"></i></button>
+                    <input type="text" title='edit message' value={this.state.body} onChange={this.handleChange('body')}/>
+                    <button><i id='edit-button-plane' className="fas fa-paper-plane"></i></button>
                 </form>
                 <button onClick={(e) => this.props.toggle(e)}>Cancel</button>
                 <button onClick={() => this.props.deleteMessage(this.props.messageId)}>Delete Message</button>

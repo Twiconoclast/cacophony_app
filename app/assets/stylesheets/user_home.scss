@@ -244,6 +244,16 @@ ul {
     justify-content: flex-end;
 }
 
+.middle-home-home {
+    background-color: #36393f;
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+    min-width: 72%;
+    flex-direction: column;
+ 
+}
+
 // * { border: 1px solid red; }
 
 .right-most-div {

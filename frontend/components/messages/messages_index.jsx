@@ -45,7 +45,7 @@ class MessagesIndex extends React.Component {
         let messageItems;
         if (this.props.messages && this.props.selectedChannel){
             messageItems = this.props.messages.map((message) => {
-                return   (<div key={message.id} class='message-holder'>
+                return   (<div key={message.id} className='message-holder'>
                             <MessageShow user={this.props.user} key={message.id} channelName={this.props.selectedChannel.channelName} channelId={this.props.channelId} message={message}/>
                             <div ref={this.bottom} />
                         </div>)

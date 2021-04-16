@@ -108,7 +108,8 @@ class ChannelView extends React.Component {
                     </div>
                 </div>
                 <div className={!this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'private-server-div'}>
-                    <header className="selected-public-server-name-header">{serverName}</header>
+                    <header className="selected-public-server-name-header">
+                        <div>{serverName}</div></header>
                     <div id='server-channel-holder'>
                         <ChannelIndexContainer/>
                         <button className={!this.props.ownedServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'delete-button'} onClick={() => {this.deleteServer(this.props.serverId)
@@ -131,7 +132,7 @@ class ChannelView extends React.Component {
                                 <MessagesIndexContainer/>
                             </div>
                         </div>
-                    <div className='right-most-div'><ul>{this.selectedServerIdMembers}</ul></div>
+                    <div className='right-most-div'><ul id='server-member-div'>{this.selectedServerIdMembers}</ul></div>
                     </div>   
                 
                 </div>

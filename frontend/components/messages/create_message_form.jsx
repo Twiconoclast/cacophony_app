@@ -18,7 +18,8 @@ class CreateMessageForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault()
         this.props.createMessage(this.state)
-            .then(() => this.setState({body: ''}))
+        App.cable.subscriptions.subscriptions[0].speak({ message: this.state.body, author_id: this.state.author_id, channel_id: this.state.channel_id });
+        this.setState({ body: "" });
     }
 
     handleChange(type) {
@@ -27,14 +28,18 @@ class CreateMessageForm extends React.Component {
 
 
     render() {
-        return(
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.body} onChange={this.handleChange('body')}/>
-                    <button><i className="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
-        )
+        if (this.props.channel) {
+            return(
+                <div id='message-form-holder'>
+                    <form onSubmit={this.handleSubmit} className='message-post-form'>
+                        <input className='message-form' type="text" value={this.state.body} onChange={this.handleChange('body')} placeholder={`Message #${this.props.channel.channelName}`}/>
+                        <button><i className="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            )
+        } else {
+            return null
+        }
     }
 
 }
@@ -45,6 +50,7 @@ const mapSTP = (state, ownProps) => ({
     channelId: ownProps.match.params.channelId,
     user: state.sessions.currentUser,
     messages: Object.values(state.entities.messages),
+    channel: state.entities.channels[ownProps.match.params.channelId]
 
 })
 

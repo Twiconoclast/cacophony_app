@@ -6,37 +6,55 @@ import MessageShow from './message_show'
 class MessagesIndex extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            hidden: true
-        }
-
+        this.state = { messages: [] };
         // this.toggle = this.toggle.bind(this)
     }
 
-    handleNewMessageForm(e) {
-        e.preventDefault()
-        this.props.createMessage(this.state)
-            .then(this.setState({body: ''}))
-    }
-
-    handleChange(type) {
-        return (e) => this.setState({[type]: e.currentTarget.value})
-    }
-
-    toggle(e) {
-        this.setState({hidden: !this.state.hidden})
-    }
+    componentDidMount() {
+        App.cable.subscriptions.create(
+          { channel: "ChatChannel" },
+          {
+            received: data => {
+              switch (data.type) {
+                case "message":
+                  this.setState({
+                    messages: this.state.messages.concat(data.message)
+                  });
+                  break;
+                case "messages":
+                  this.setState({ messages: data.messages });
+                  break;
+              }
+            },
+            speak: function (data) { return this.perform("speak", data) },
+            load: function (data) { return this.perform("load", data) }
+          }
+        );
+      }
+      
+      loadChat(e) {
+        e.preventDefault();
+        App.cable.subscriptions.subscriptions[0].load(this.props.channelId);
+      }
+       componentDidUpdate() {
+        // this.bottom.current.scrollIntoView();
+      }
+     
 
     render() {
         let messageItems;
-        if (this.props.messages){
+        if (this.props.messages && this.props.selectedChannel){
             messageItems = this.props.messages.map((message) => {
-                return <MessageShow user={this.props.user} key={message.id} channelId={this.props.channelId} message={message}/>
-            })
+                return   (<div key={message.id} class='message-holder'>
+                            <MessageShow user={this.props.user} key={message.id} channelName={this.props.selectedChannel.channelName} channelId={this.props.channelId} message={message}/>
+                            <div ref={this.bottom} />
+                        </div>)
+            }) 
         }
 
         return(
             <div>
+                <button className="load-button" onClick={this.loadChat.bind(this)}>Load Chat History</button>
                 <ul>{messageItems}</ul>
                 <CreateMessageFormContainer/>
             </div>

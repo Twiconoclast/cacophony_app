@@ -24,11 +24,11 @@ class UserSearchForm extends React.Component {
         })
     }
 
-    handleBlur(e) {
-        e.preventDefault()
-        this.setState({username: '',
-        autoCompleteResults: []})
-    }
+    // handleBlur(e) {
+    //     e.preventDefault()
+    //     this.setState({username: '',
+    //     autoCompleteResults: []})
+    // }
 
     handleSelect(id, e) {
         e.preventDefault()
@@ -44,13 +44,13 @@ class UserSearchForm extends React.Component {
     render() {
 
         let autocompleteList = this.state.autoCompleteResults.map((result, idx) => (
-            <li key={idx} onBlur={this.handleBlur} onClick={(e) => this.handleSelect(result.id, e)}>{result.username}</li>
+            <li className='result-li' key={idx} onClick={(e) => this.handleSelect(result.id, e)}>{result.username}</li>
         ))
 
         return (
-            <div>
-                <input ref={ (input) => { this.searchBar = input } } value={ this.state.username } onChange={ this.getAutoCompleteResults.bind(this) } type='text' placeholder='Search...' />
-                <ul>{autocompleteList}</ul>
+            <div className='private-search-bar'>
+                <input className='search-for-friends' ref={ (input) => { this.searchBar = input } } value={ this.state.username } onChange={ this.getAutoCompleteResults.bind(this) } type='search' placeholder='Search...' />
+                <ul className='results' >{autocompleteList}</ul>
             </div>
         )
     }

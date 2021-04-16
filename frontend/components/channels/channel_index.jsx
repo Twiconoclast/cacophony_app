@@ -58,7 +58,7 @@ class ChannelIndex extends React.Component {
         }
         return (
             <div className='private-server-blank-space'>
-                <div className='dmlabel'>CHANNELS</div> 
+                <div className='dmlabel channel-label'>CHANNELS</div> 
                 <ul id='channel-link-ul'>{this.channelLinks}</ul>
                 <form id='new-channel-form' onSubmit={this.channelCreate}>
                     <input id='new-channel-box' type="text" onChange={this.handleChangeChannel('channel_name')} placeholder='new channel' value={this.state.channel_name}/>

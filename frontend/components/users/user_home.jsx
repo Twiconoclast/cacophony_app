@@ -2,7 +2,7 @@ import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 import PublicServerForm from '../servers/public_server_form'
-import SelectedServerDetails from '../servers/selected_server_details'
+// import SelectedServerDetails from '../servers/selected_server_details'
 import PublicServerIndexContainer from '../servers/public_server_index_container'
 import PrivateServerIndexContainer from '../servers/private_server_index_container'
 import PrivateServerUserSearchContainer from './private_server_user_search_container'

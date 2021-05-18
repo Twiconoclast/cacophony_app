@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import {createSession, removeErrors} from '../../actions/session_actions'
+import {createSession, removeErrors, receiveErrors} from '../../actions/session_actions'
 import { withRouter } from 'react-router-dom';
 import SessionForm from './session_form'
 
@@ -24,7 +24,8 @@ const mapSTP = (state) => ({
 const mapDTP = (dispatch) => ({
     action: (user) => dispatch(createSession(user)),
     createSession: (user) => dispatch(createSession(user)),
-    removeErrors: () => dispatch(removeErrors())
+    removeErrors: () => dispatch(removeErrors()),
+    receiveErrors: (errors) => dispatch(receiveErrors(errors))
 })
 
 export default withRouter(connect(mapSTP, mapDTP)(SessionForm))

@@ -112,8 +112,11 @@ class ChannelView extends React.Component {
                         <div>{serverName}</div></header>
                     <div id='server-channel-holder'>
                         <ChannelIndexContainer/>
-                        <button className={!this.props.ownedServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'delete-button'} onClick={() => {this.deleteServer(this.props.serverId)
-                        this.props.history.push('/channels/@me')}}>Delete Server</button>
+                        <button className={!this.props.ownedServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'delete-button'} 
+                            onClick={() => {
+                                this.deleteServer(this.props.serverId)
+                                this.props.history.push('/channels/@me')
+                                }}>Delete Server</button>
                         <footer className='private-server-div-footer'>
                             <div className='inner-footer-div'>
                                 <img src={window.whiteontback} className='in-footer-logo' alt="home"/> 

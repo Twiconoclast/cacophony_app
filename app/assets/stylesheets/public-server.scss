@@ -67,6 +67,12 @@ div #channel-link-ul {
     width: 93%;
     font-size: 15px;
     padding-left: 30px;
+    color: #b9bbbe;
+}
+
+.message-form:focus { 
+    border: none; 
+    outline: none;
 }
 
 #message-form-holder {
@@ -81,7 +87,7 @@ div #channel-link-ul {
     margin-left: -5px;
     padding: none;
     background-color: #40444b;
-    color: #757575;
+    color: #b9bbbe;
 
     // position: absolute;
     // bottom: 46px;

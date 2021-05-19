@@ -8,18 +8,27 @@ class EditMessageForm extends React.Component {
         super(props)
         this.state = {
             body: this.props.message.body,
-            author_id: this.props.message.author_id,
+            author_id: this.props.message.authorId,
             channel_id: this.props.channelId,
             id: this.props.message.id
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     handleSubmit(e) {
         e.preventDefault()
         this.props.updateMessage(this.state)
-        return (e) => this.props.toggle(e)
+            .then(() => this.props.fetchMessage(this.props.messageId))
+        this.props.toggle(e)
+    }
+
+    handleDelete(e) {
+        e.preventDefault()
+        this.props.deleteMessage(this.props.messageId)
+            .then(() => this.props.messageDeleted())
+        this.props.toggle(e)
     }
 
     handleChange(type) {
@@ -39,7 +48,7 @@ class EditMessageForm extends React.Component {
                     <button><i id='edit-button-plane' className="fas fa-paper-plane"></i></button>
                 </form>
                 <button onClick={(e) => this.props.toggle(e)}>Cancel</button>
-                <button onClick={() => this.props.deleteMessage(this.props.messageId)}>Delete Message</button>
+                <button onClick={this.handleDelete}>Delete Message</button>
             </div>
         )
     }
@@ -56,7 +65,7 @@ const mapSTP = (state, ownProps) => ({
     channelId: ownProps.match.params.channelId,
     user: state.sessions.currentUser,
     messages: Object.values(state.entities.messages),
-
+    messageDeleted: ownProps.messageDeleted
 })
 
 const mapDTP = (dispatch) => ({

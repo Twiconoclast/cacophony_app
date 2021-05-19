@@ -70,7 +70,7 @@ class MessageShow extends React.Component {
                         <i className="fas fa-pen"></i>
                     </button>
                     <div className={this.state.hidden ? 'hidden' : ''}>
-                    <EditMessageFormContainer toggle={this.toggle} message={this.props.message} messageId={this.props.message.id}
+                    <EditMessageFormContainer toggle={this.toggle} message={this.props.message} messageId={this.props.message.id} messageDeleted={this.props.messageDeleted}
                     />
                     </div>
                 </li>

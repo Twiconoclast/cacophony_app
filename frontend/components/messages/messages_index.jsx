@@ -9,11 +9,17 @@ class MessagesIndex extends React.Component {
         this.state = { messages: this.props.messages };
         this.bottom = React.createRef();
         this.subscription
-        console.log(this.bottom)
         // this.toggle = this.toggle.bind(this)
+        this.messageDeleted = this.messageDeleted.bind(this)
+    }
+
+    messageDeleted(){
+        this.setState({messages: this.props.messages})
     }
 
     UNSAFE_componentWillReceiveProps(prevProps) {
+        console.log(prevProps.messages)
+        console.log(this.props.messages)
         if (this.props.messages.length >= prevProps.messages.length) {
             this.setState({messages: this.props.messages})
         }
@@ -35,7 +41,6 @@ class MessagesIndex extends React.Component {
                         this.setState({
                             messages: this.state.messages.concat([data.message])
                         });
-                        console.log(this.state)
                   break;
                 case "messages":
                   this.setState({ messages: data.messages });
@@ -94,7 +99,7 @@ class MessagesIndex extends React.Component {
                 if (message.channelId === this.props.selectedChannel.id) {
                 return   (<div key={message.id} className='message-holder'>
                             
-                            <MessageShow user={this.props.user} key={message.id} channelName={this.props.selectedChannel.channelName} channelId={this.props.channelId} message={message}/>
+                            <MessageShow user={this.props.user} key={message.id} channelName={this.props.selectedChannel.channelName} channelId={this.props.channelId} message={message} messageDeleted={this.messageDeleted}/>
                             <div ref={this.bottom} />
                         </div>)
                 } else {

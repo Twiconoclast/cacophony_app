@@ -6,6 +6,7 @@ import UserSearchForm from '../users/user_search_form'
 import PrivateServerUserSearchContainer from '../users/private_server_user_search_container'
 import ChannelIndexContainer from './channel_index_container'
 import MessagesIndexContainer from '../messages/messages_index_container'
+import CreateMessageFormContainer from '../messages/create_message_form'
 
 class ChannelView extends React.Component {
     constructor(props) {
@@ -155,6 +156,7 @@ class ChannelView extends React.Component {
                         <div className='middle-home'>
                             <div id='micontainer-holder'>
                                 <MessagesIndexContainer/>
+                                <CreateMessageFormContainer/>
                             </div>
                         </div>
                     <div className='right-most-div'><ul id='server-member-div'>{this.selectedServerIdMembers}</ul></div>

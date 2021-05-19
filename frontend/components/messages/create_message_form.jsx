@@ -33,7 +33,7 @@ class CreateMessageForm extends React.Component {
                 <div id='message-form-holder'>
                     <form onSubmit={this.handleSubmit} className='message-post-form'>
                         <input className='message-form' type="text" value={this.state.body} onChange={this.handleChange('body')} placeholder={`Message #${this.props.channel.channelName}`}/>
-                        <button><i id='create-message-plane' className="fas fa-paper-plane"></i></button>
+                        <button id='plane-button'><i id='create-message-plane' className="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
             )

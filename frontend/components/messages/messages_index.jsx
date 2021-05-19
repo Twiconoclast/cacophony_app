@@ -113,10 +113,10 @@ class MessagesIndex extends React.Component {
 
 
         return(
-            <div>
+            <div id='message-div'>
                 {/* <button className="load-button" onClick={this.loadChat.bind(this)}>Load Chat History</button> */}
-                <ul>{messageItems}</ul>
-                <CreateMessageFormContainer/>
+                <ul id='list'>{messageItems}</ul>
+                {/* <CreateMessageFormContainer/> */}
             </div>
         )
     }

@@ -58,11 +58,11 @@ div #channel-link-ul {
 .message-form {
     background-color: #40444b;
     border-style: unset;
-    height: 20px;
+    // height: 20px;
     margin-left: 20px;
     border-radius: 5px;
     bottom: 60px;
-    position: absolute;
+    // position: absolute;
     height: 50px;
     width: 93%;
     font-size: 15px;
@@ -70,17 +70,59 @@ div #channel-link-ul {
 }
 
 #message-form-holder {
-    width: 100%;
+    position: absolute;
+    bottom: 61px;
+    width: 98%;
+    height: fit-content;
 }
 
 #create-message-plane {
     margin-right: 0;
-    margin-left: none;
-    padding-left: 0;
-    position: absolute;
-    bottom: 46px;
-    right: 45px;
-    height: 45px;
+    margin-left: -5px;
+    padding: none;
+    background-color: #40444b;
+    color: #757575;
+
+    // position: absolute;
+    // bottom: 46px;
+    // right: 45px;
+    height: 15px;
+}
+
+#plane-button {
+    background-color: #40444b;
+    margin-left: -10px;
+    border-style: unset;
+    border-radius: 5px;
+    height: 52px;
+    width: 40px;
+}
+
+#list {
+    padding-left: 25px;
+    margin-top: auto;
+}
+
+#micontainer-holder {
+    height: 100vh;
+}
+
+#message-div {
+    height: 87%;
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y proximity;
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-end;
+}
+
+#message-div > ul:last-child {
+    scroll-snap-align: end;
+}
+
+#message-div::-webkit-scrollbar {
+    width: 20px;
 }
 
 // .fa-paper-plane-edit {
@@ -106,12 +148,13 @@ div #channel-link-ul {
 .message-post-form {
     display: flex;
     flex-direction: row;
+    height: fit-content;
 }
 
 .message-holder {
-    height: 100%;
+    height: fit-content;
     width: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 25px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

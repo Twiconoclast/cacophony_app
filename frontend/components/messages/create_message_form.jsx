@@ -9,7 +9,7 @@ class CreateMessageForm extends React.Component {
         this.state = {
             body: '',
             author_id: this.props.user.id,
-            channel_id: this.props.channelId
+            channel_id: Number(this.props.channelId)
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -17,8 +17,8 @@ class CreateMessageForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.createMessage(this.state)
-        // App.cable.subscriptions.subscriptions[0].speak({ message: this.state.body, author_id: this.state.author_id, channel_id: this.state.channel_id });
+        // this.props.createMessage(this.state)
+        App.cable.subscriptions.subscriptions[0].speak({ message: this.state.body, author_id: this.state.author_id, channel_id: this.state.channel_id });
         this.setState({ body: "" });
     }
 

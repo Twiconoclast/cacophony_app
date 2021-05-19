@@ -45,6 +45,22 @@ class ChannelView extends React.Component {
         this.props.deleteSession()
     }
 
+    imageTransalator(ref) {
+        if (ref === 'blueballoonav') {
+            return window.blueballoonav
+        } else if (ref === 'blueguyav') {
+            return window.blueguyav
+        } else if (ref === 'frogav') {
+            return window.frogav
+        } else if (ref === 'mayberabbitav') {
+            return window.mayberabbitav
+        } else if (ref === 'mushroomav') {
+            return window.mushroomav
+        } else if (ref === 'wizardav') {
+            return window.wizardav
+        }
+    }
+
     render() {
         const splitSliceUpCase = (str) => {
             let newStr = str.slice(0, 1).toUpperCase() + str.slice(1)
@@ -58,9 +74,15 @@ class ChannelView extends React.Component {
             if (this.props.serverId == server.id) {
                 return (server.members.map((member) => {
                     if (member.id != this.props.user.id) {
+                        let avatarDiv;
+                        if (member.imageRef) {
+                            avatarDiv = (<div className='user-icon'><img src={this.imageTransalator(member.imageRef)}/></div>)
+                        } else {
+                            avatarDiv = (<div className='user-icon'>{splitSliceUpCase(member.username)}</div>)
+                        }
                         return <li key={member.id} className='server-member-list-item' title={member.username}>
                             <div className='dm-friend-item-detail'>
-                                <div className='user-icon'>{splitSliceUpCase(member.username)}</div>
+                                {avatarDiv}
                                 <div>{member.username}</div>
                                 <button onClick={() => this.friendClick(member.username, member.id)} className='add-direct-message-button'>+</button>
                             </div>

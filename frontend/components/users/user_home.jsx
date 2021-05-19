@@ -46,6 +46,22 @@ class UserHome extends React.Component {
         }
     }
 
+    imageTransalator(ref) {
+        if (ref === 'blueballoonav') {
+            return window.blueballoonav
+        } else if (ref === 'blueguyav') {
+            return window.blueguyav
+        } else if (ref === 'frogav') {
+            return window.frogav
+        } else if (ref === 'mayberabbitav') {
+            return window.mayberabbitav
+        } else if (ref === 'mushroomav') {
+            return window.mushroomav
+        } else if (ref === 'wizardav') {
+            return window.wizardav
+        }
+    }
+
     render() {
         this.fSMList = Object.values(this.props.friends)
 
@@ -59,10 +75,17 @@ class UserHome extends React.Component {
 
         this.fLItems = this.fSMList.map((friend) => {
             if (this.props.user.fellowServerMembers.includes(friend.id)) {
+                console.log(friend.imageRef)
+                let avatarDiv;
+                        if (friend.imageRef) {
+                            avatarDiv = (<div className='user-icon'><img src={this.imageTransalator(friend.imageRef)}/></div>)
+                        } else {
+                            avatarDiv = (<div className='user-icon'>{splitSliceUpCase(friend.username)}</div>)
+                        }
                 return (<li className='friend-item' key={friend.id}>
                     <div className='friend-item-detail' onClick={() => this.friendClick(friend.username, friend.id)}>
                         <div id='name-and-letters'>
-                            <div className='user-icon'>{splitSliceUpCase(friend.username)}</div>
+                            {avatarDiv}
                             <div className='friend-name'>{friend.username}</div>
                         </div>
                         <div id='friend-list-buttons'>

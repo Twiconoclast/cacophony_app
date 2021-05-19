@@ -30,6 +30,22 @@ class PrivateServerIndex extends React.Component {
         this.props.deleteSession()
     }
 
+    imageTransalator(ref) {
+        if (ref === 'blueballoonav') {
+            return window.blueballoonav
+        } else if (ref === 'blueguyav') {
+            return window.blueguyav
+        } else if (ref === 'frogav') {
+            return window.frogav
+        } else if (ref === 'mayberabbitav') {
+            return window.mayberabbitav
+        } else if (ref === 'mushroomav') {
+            return window.mushroomav
+        } else if (ref === 'wizardav') {
+            return window.wizardav
+        }
+    }
+
     render() {
         const splitSliceUpCase = (str) => {
             let newStr = str.slice(0, 1).toUpperCase() + str.slice(1)
@@ -40,22 +56,36 @@ class PrivateServerIndex extends React.Component {
         }
 
 
-        this.serverLinks = this.props.privateServers.map((server) => (
-            <li className={this.props.selectedServerId == server.id ? `selected-private-server private-server` : `private-server`} key={server.id} title={server.serverName}>
+        this.serverLinks = this.props.privateServers.map((server) => {
+            let avatar;
+            server.members.forEach((member) => {
+                if (member.username != this.props.user.username && member.imageRef) {
+                    avatar = (<img src={this.imageTransalator(member.imageRef)}/>)
+                } else if (!avatar) {
+                    avatar = (<img src={window.whiteontback} className='in-link-logo' alt="home"/>)
+                }
+            })
+            return (<li className={this.props.selectedServerId == server.id ? `selected-private-server private-server` : `private-server`} key={server.id} title={server.serverName}>
                 <Link className='private-server-link' to={`/channels/${server.id}/${server.defaultChannelId}`}>
-                    <img src={window.whiteontback} className='in-link-logo' alt="home"/>
+                    {avatar}
                     <div>{server.serverName}</div>
                 </Link>
-            </li>
-        ))
+            </li>)
+        })
         
         this.selectedServerIdMembers = this.props.privateServers.map((server) => {
             if (this.props.selectedServerId == server.id) {
                 return (server.members.map((member) => {
                     if (member.id != this.props.user.id) {
+                        let avatarDiv;
+                        if (member.imageRef) {
+                            avatarDiv = (<div className='user-icon'><img src={this.imageTransalator(member.imageRef)}/></div>)
+                        } else {
+                            avatarDiv = (<div className='user-icon'>{splitSliceUpCase(member.username)}</div>)
+                        }
                         return <li key={member.id} className='server-member-list-item' title={member.username}>
                             <div className='dm-friend-item-detail'>
-                                <div className='user-icon'>{splitSliceUpCase(member.username)}</div>
+                                {avatarDiv}
                                 <div>{member.username}</div>
                                 <button onClick={() => this.friendClick(member.username, member.id)} className='add-direct-message-button'>+</button>
                             </div>

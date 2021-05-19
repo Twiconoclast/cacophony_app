@@ -1,6 +1,7 @@
 
     json.id @user.id
     json.username @user.username
+    json.image_ref @user.image_ref
     private_server_friends = []
     owned_servers = @user.servers.select {|server| server.owner_id == @user.id}
     public_servers = @user.servers.select {|server| server.private == false}

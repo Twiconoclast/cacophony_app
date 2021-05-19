@@ -5,6 +5,7 @@
         json.channel_id message.channel_id
         json.author_id message.author_id
         json.author message.author.username
+        json.author_image message.author.image_ref
         json.created_at message.created_at
     end
 end

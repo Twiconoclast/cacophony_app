@@ -44,6 +44,10 @@ class MessageShow extends React.Component {
         }
     }
 
+    dateFormatter(date) {
+        return date.slice(5, 7) + '/' + date.slice(8, 10) + '/' + date.slice(0, 4)
+    }
+
     render() {
         const splitSliceUpCase = (str) => {
             let newStr = str.slice(0, 1).toUpperCase() + str.slice(1)
@@ -54,26 +58,40 @@ class MessageShow extends React.Component {
         }
         let avatar;
             if (this.props.message.authorImage) {
-                avatar = (<img src={this.imageTransalator(this.props.message.authorImage)}/>)
+                avatar = (<img className='message-avatar' src={this.imageTransalator(this.props.message.authorImage)}/>)
             } else {
                 avatar = (<div className='user-icon'>{splitSliceUpCase(this.props.message.author)}</div>)
             }
         if (this.props.message.channelId == this.props.channelId) {
             return (
             <div>
-                {avatar}
-                <li key={this.props.message.id}>
-                    <div>{this.props.message.createdAt}</div>
-                    <div>{this.props.message.author}</div>
-                    <div className={this.state.hidden ? 'message-body' : 'hidden'}>{this.props.message.body}</div>
-                    <button onClick={this.toggle} className={this.props.user.id != this.props.message.authorId ? 'hidden' : ''}>
-                        <i className="fas fa-pen"></i>
-                    </button>
-                    <div className={this.state.hidden ? 'hidden' : ''}>
-                    <EditMessageFormContainer toggle={this.toggle} message={this.props.message} messageId={this.props.message.id} messageDeleted={this.props.messageDeleted}
-                    />
-                    </div>
-                </li>
+                <div className='message-item-div'>
+                    {avatar}
+                    <li key={this.props.message.id}>
+                        <div className='author-name-date'>
+                            <div className='author'>{this.props.message.author}</div>
+                            <div><span className='in-message-date-span'>{this.dateFormatter(this.props.message.createdAt)}</span></div>
+                        </div>
+                        <div className='body-and-button'>
+                            <div className={this.state.hidden ? 'message-body' : 'hidden'}>{this.props.message.body}</div>
+                            <div className={this.state.hidden ? 'edit-button-holder' : 'hidden'}>
+                                <div onClick={this.toggle} className={this.props.user.id != this.props.message.authorId ? 'hidden' : 'edit-button'}>
+                                    <i className="fas fa-pen"></i>
+                                </div>
+                            </div>
+                        
+                            <div className={this.state.hidden ? 'hidden' : 'message-body'}>
+                                <EditMessageFormContainer toggle={this.toggle} message={this.props.message} messageId={this.props.message.id} messageDeleted={this.props.messageDeleted}/>
+                                </div>
+                            <div className={this.state.hidden ? 'hidden' : 'edit-button-holder'}>
+                                <div onClick={this.toggle} className={this.props.user.id != this.props.message.authorId ? 'hidden' : 'edit-button'}>
+                                    <i className="fas fa-pen"></i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </li>
+                </div>
             </div>
             )
         } else {

@@ -167,8 +167,43 @@ div #channel-link-ul {
     color: whitesmoke;
 }
 
+.message-holder > div {
+    width: 100%;
+}
+
 .server-view-header {
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.message-form-edit {
+    background-color: #40444b;
+    border-style: unset;
+    // height: 20px;
+    
+    border-radius: 5px;
+    bottom: 60px;
+    // position: absolute;
+    min-height: 50px;
+    height: fit-content;
+    width: 93%;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #b9bbbe;
+}
+
+.message-form-edit::-webkit-scrollbar {
+    width: 10px;
+    background-color: #40444b;
+}
+
+.message-form-form {
+    width: 100%;
+}
+
+.message-form-edit:focus { 
+    border: none; 
+    outline: none;
 }

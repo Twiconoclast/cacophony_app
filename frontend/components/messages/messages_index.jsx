@@ -75,6 +75,38 @@ class MessagesIndex extends React.Component {
             return window.wizardav
         }
     }
+
+    dateFormatter(date) {
+        let month;
+        if (date.slice(5, 7) === '01') {
+            month = 'January'
+        } else if (date.slice(5, 7) === '02') {
+            month = 'February'
+        }  else if (date.slice(5, 7) === '02') {
+            month = 'February'
+        }  else if (date.slice(5, 7) === '03') {
+            month = 'March'
+        }  else if (date.slice(5, 7) === '04') {
+            month = 'April'
+        }  else if (date.slice(5, 7) === '05') {
+            month = 'May'
+        }  else if (date.slice(5, 7) === '06') {
+            month = 'June'
+        }  else if (date.slice(5, 7) === '07') {
+            month = 'July'
+        }  else if (date.slice(5, 7) === '08') {
+            month = 'August'
+        }  else if (date.slice(5, 7) === '09') {
+            month = 'September'
+        }  else if (date.slice(5, 7) === '10') {
+            month = 'October'
+        }  else if (date.slice(5, 7) === '11') {
+            month = 'November'
+        }  else if (date.slice(5, 7) === '12') {
+            month = 'December'
+        }
+        return month + ' ' + date.slice(8, 10) + ',' + ' ' + date.slice(0, 4)
+    }
      
 
     render() {
@@ -87,7 +119,16 @@ class MessagesIndex extends React.Component {
         }
         let messageItems;
         if (this.state.messages && this.props.selectedChannel){
+            let dates = []
             messageItems = this.state.messages.map((message) => {
+                let date = this.dateFormatter(message.createdAt)
+                let dateClass;
+                if (dates.includes(date)) {
+                    dateClass = 'hidden'
+                } else {
+                    dateClass = 'top-date'
+                }
+                dates.push(date)
                 let avatar;
                 if (message.authorImage) {
                     avatar = (<img src={this.imageTransalator(message.authorImage)}/>)
@@ -95,11 +136,17 @@ class MessagesIndex extends React.Component {
                     avatar = (<div className='user-icon'>{splitSliceUpCase(message.author)}</div>)
                 }
                 if (message.channelId === this.props.selectedChannel.id) {
-                return   (<div key={message.id} className='message-holder'>
-                            
-                            <MessageShow user={this.props.user} key={message.id} channelName={this.props.selectedChannel.channelName} channelId={this.props.channelId} message={message} messageDeleted={this.messageDeleted}/>
-                            <div ref={this.bottom} />
-                        </div>)
+                    return   (
+                        <div key={message.id} >
+                            <div className={dateClass==='hidden' ? 'hidden' : 'for-border'}>
+                                <div className={dateClass}><span className='top-date-span'>{date}</span></div>
+                            </div>
+                            <div key={message.id} className='message-holder'>                            
+                                <MessageShow user={this.props.user} key={message.id} channelName={this.props.selectedChannel.channelName} channelId={this.props.channelId} message={message} messageDeleted={this.messageDeleted}/>
+                                {/* <div ref={this.bottom} /> */}
+                            </div>
+                        </div>
+                    )
                 } else {
                     return (<div key={message.id} className='hidden'></div>)
                 }

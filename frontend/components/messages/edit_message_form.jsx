@@ -43,12 +43,11 @@ class EditMessageForm extends React.Component {
     render() {
         return(
             <div className='message-form-form-div'>
-                <form className='message-form-form' onSubmit={this.handleSubmit}>
+                <form className='message-form-form' onSubmit={this.handleSubmit}></form>
                     <textarea className='message-form-edit' title='edit message' value={this.state.body} onChange={this.handleChange('body')}/>
-                    <button className='editing-button' onClick={(e) => this.props.toggle(e)}>Cancel</button>
                     <button className='editing-button' onClick={this.handleDelete}>Delete Message</button>
-                    <button className='editing-button' type='submit'><i className="fas fa-paper-plane"></i></button>
-                </form>
+                    <button className='editing-button' onClick={(e) => this.props.toggle(e)}>Cancel</button>
+                    <button className='editing-button' onClick={this.handleSubmit} type='submit'><i className="fas fa-paper-plane"></i></button>
             </div>
         )
     }

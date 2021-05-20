@@ -99,7 +99,7 @@ a .delete-channel-button {
 .server-view-header {
     display: flex;
     flex-direction: row;
-    justify-content: space-around; 
+    justify-content: flex-start; 
 }
 
 .delete-button {
@@ -227,4 +227,11 @@ div span.top-date-span {
 .editing-button {
     color: whitesmoke;
     background-color: #55537c;
+}
+
+.search-and-channel-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 72%;
 }

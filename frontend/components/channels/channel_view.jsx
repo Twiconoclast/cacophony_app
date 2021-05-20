@@ -100,12 +100,14 @@ class ChannelView extends React.Component {
         if (this.props.selectedChannel){
             if (this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
                 headerContent = <div className='server-view-header'>
-                                    <div className='channel-name-top'><i className="fas fa-hashtag"></i>{this.props.selectedChannel.channelName}</div>
-                                    <UserSearchFormContainer serverId={this.props.serverId}></UserSearchFormContainer> 
+                                    <div className='search-and-channel-holder'>
+                                        <div className='channel-name-top'><i className="fas fa-hashtag"></i>{this.props.selectedChannel.channelName}</div>
+                                        <UserSearchFormContainer serverId={this.props.serverId}></UserSearchFormContainer> 
+                                    </div>
                                 </div>
             } else if (!this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
                 headerContent = <div className='server-view-header'>
-                                    <div className='channel-name'><i className="fas fa-hashtag"></i>
+                                    <div className='channel-name-top'><i className="fas fa-hashtag"></i>
                                     {this.props.selectedChannel.channelName}</div>
                                 </div>
                 }

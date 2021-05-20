@@ -46,7 +46,7 @@ class ChannelIndex extends React.Component {
                 <li className={this.props.channelId == channel.id ? `selected-channel channel` : `channel`} key={channel.id} title={channel.channelName}>
                     <Link className='channel-link' to={`/channels/${this.props.serverId}/${channel.id}`}>
                         <i className="fas fa-hashtag"></i>
-                        <div className='channel-name'>{channel.channelName}</div>
+                        <div className='channel-name-top'>{channel.channelName}</div>
                     </Link>
                     <button title='Delete Channel' className={channel.id == this.props.server.defaultChannelId ? 'hidden' : 'delete-channel-button'} onClick={() => {
                         this.props.deleteChannel(channel.id)

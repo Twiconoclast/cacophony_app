@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     resources :servers, only: [:index, :show, :create, :destroy]
     resource :server_memberships, only: [:create, :destroy]
     resources :channels, only: [:index, :show, :create, :destroy]
-    resources :messeges, only: [:index, :show, :create, :update, :destroy]
+    resources :messages, only: [:index, :show, :create, :update, :destroy]
   end
 
   root to: 'static_pages#root'
+  mount ActionCable.server, at: '/cable'
 end

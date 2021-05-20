@@ -1,4 +1,5 @@
 import React from "react";
+import {RECEIVE_ERRORS} from '../../actions/session_actions'
 import {Redirect, Link} from 'react-router-dom'
 import { useHistory } from "react-router-dom";
 
@@ -13,6 +14,7 @@ class SessionForm extends React.Component {
     }
 
     componentDidMount() {
+
         if (this.props.areThereErrors > 0) {
             this.setState({hiddenOrShow:'show'})
             this.props.removeErrors()
@@ -21,8 +23,17 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.action({username: this.state.username, password: this.state.password})
-            .fail(() => this.componentDidMount())
+        if ((this.props.formType === 'Create an account' && this.state.password === this.state.password2) || this.props.formType === 'Welcome back!') {
+            this.props.action({username: this.state.username, password: this.state.password})
+                .fail(() => this.componentDidMount())
+        } else {
+            this.props.receiveErrors({
+                    responseJSON: {
+                        errors: ["Password fields must match"]
+                }
+            })
+            this.componentDidMount()
+        }
     }
 
     handleChange(type) {
@@ -35,7 +46,7 @@ class SessionForm extends React.Component {
     } 
 
     render() {
-        
+ 
         return (
             <div className='form-background'>
                 <Link to='/'>
@@ -55,6 +66,9 @@ class SessionForm extends React.Component {
                                 </label>
                                 <label className='sessionFormLabel'>PASSWORD
                                     <input className='input-box' type="password" value={this.state.password} onChange={this.handleChange('password')}/>
+                                </label>
+                                <label className={this.props.formType === 'Create an account' ? 'sessionFormLabel' : 'hidden'}>CONFIRM PASSWORD
+                                    <input className='input-box' type="password" value={this.state.password2} onChange={this.handleChange('password2')}/>
                                 </label>
                                 <button className='submit-button'>{this.props.buttonText}</button>
                                 <div className='after-form-link'>

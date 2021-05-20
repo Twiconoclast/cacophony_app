@@ -1,8 +1,8 @@
 .private-server-div {
     display: flex;
     flex-direction: column;
-    max-width: 240px;
-    min-width: 240px;
+    max-width: 245px;
+    min-width: 245px;
     background-color: #2f3136;
 }
 
@@ -17,24 +17,41 @@
     padding-left: 0px;
 }
 
-#private-search-bar {
+.private-search-bar {
     padding-top: 5px;
     position: relative;
-    width: 90%;
+    width: 100%;
 }
 
 .search-for-friends {
-    width: 95%;
+    width: 90%;
+    margin-left: 10px;
+    padding-left: 5px;  
+    margin-top: 2px;  
+    height: 85%;
+    border: 1px solid #202225;
+    border-radius: 5px;
+    background-color: #202225;
+    font-size: 13px;
+    color: #494b50;
+
+}
+
+.search-for-friends-to-add {
+    max-width: 25%;
+    margin-left:306px;    
+    position: absolute;
+    right: 355px;
     height: 75%;
     border: 1px solid #202225;
     border-radius: 5px;
     background-color: #202225;
     font-size: 13px;
     color: #494b50;
-    padding-left: 10px;
+
 }
 
-#results {
+.results {
     position: absolute;
     background-color: #2f3136;
     color: whitesmoke;
@@ -42,6 +59,7 @@
     padding-inline-start: 0px;
     width: 200px;
     top: 15px;
+    z-index: 2;
 }
 
 .result-li {
@@ -307,4 +325,36 @@
 
 .message-button:hover {
     border-style: unset;
+}
+
+#server-member-div {
+    color: whitesmoke;
+    padding: 20px;
+    margin: 0;
+    width: 80%;
+}
+
+.server-member-list-item {
+    display: flex;
+    padding-left: 20px;
+    width: 100%;
+    align-content: space-between;
+ 
+}
+
+.dm-friend-item-detail {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.add-direct-message-button {
+    background-color: #36393f;
+    margin-left: 20px;
+    border-style: unset;
+    border-radius: 50%;
+    font-weight: bolder;
+    font-size: 20px;
+
 }

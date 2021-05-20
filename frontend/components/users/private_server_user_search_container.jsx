@@ -14,6 +14,7 @@ class PrivateServerUserSearchForm extends React.Component {
             showUserSelected: false
         }
         this.friendClick = this.friendClick.bind(this)
+ 
     }
 
     friendClick(name, id) {
@@ -38,6 +39,10 @@ class PrivateServerUserSearchForm extends React.Component {
         })
     }
 
+    collapse () {
+        this.setState({autoCompleteResults: []});
+    }
+
     handleBlur() {
         () => this.setState({username: '',
         autoCompleteResults: []})
@@ -52,9 +57,9 @@ class PrivateServerUserSearchForm extends React.Component {
         ))
 
         return (
-            <div id='private-search-bar'>
-                <input className='search-for-friends' ref={ (input) => { this.searchBar = input } } value={ this.state.username } onChange={ this.getAutoCompleteResults.bind(this) } type='text' placeholder='Find or start a conversation' />
-                <ul id='results'>{autocompleteList}</ul>
+            <div className='private-search-bar'>
+                <input className='search-for-friends' ref={ (input) => { this.searchBar = input } } value={ this.state.username } onChange={ this.getAutoCompleteResults.bind(this) } type='search' placeholder='Find or start a conversation' />
+                <ul className='results' tabIndex="0" >{autocompleteList}</ul>
             </div>
         )
     }

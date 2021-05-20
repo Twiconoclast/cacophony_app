@@ -5,6 +5,8 @@ import UserSearchFormContainer from '../users/user_search_form'
 import UserSearchForm from '../users/user_search_form'
 import PrivateServerUserSearchContainer from '../users/private_server_user_search_container'
 import ChannelIndexContainer from './channel_index_container'
+import MessagesIndexContainer from '../messages/messages_index_container'
+import CreateMessageFormContainer from '../messages/create_message_form'
 
 class ChannelView extends React.Component {
     constructor(props) {
@@ -20,9 +22,10 @@ class ChannelView extends React.Component {
 
 
     componentDidMount() {
+        this.props.fetchServer(this.props.serverId)
         this.props.fetchChannels(this.props.serverId)
         this.props.fetchChannel(this.props.channelId)
-        this.props.fetchServer(this.props.serverId)
+        this.props.fetchMessages(this.props.channelId)
     }
 
     friendClick(name, id) {
@@ -43,6 +46,22 @@ class ChannelView extends React.Component {
         this.props.deleteSession()
     }
 
+    imageTransalator(ref) {
+        if (ref === 'blueballoonav') {
+            return window.blueballoonav
+        } else if (ref === 'blueguyav') {
+            return window.blueguyav
+        } else if (ref === 'frogav') {
+            return window.frogav
+        } else if (ref === 'mayberabbitav') {
+            return window.mayberabbitav
+        } else if (ref === 'mushroomav') {
+            return window.mushroomav
+        } else if (ref === 'wizardav') {
+            return window.wizardav
+        }
+    }
+
     render() {
         const splitSliceUpCase = (str) => {
             let newStr = str.slice(0, 1).toUpperCase() + str.slice(1)
@@ -56,9 +75,15 @@ class ChannelView extends React.Component {
             if (this.props.serverId == server.id) {
                 return (server.members.map((member) => {
                     if (member.id != this.props.user.id) {
+                        let avatarDiv;
+                        if (member.imageRef) {
+                            avatarDiv = (<div className='user-icon'><img src={this.imageTransalator(member.imageRef)}/></div>)
+                        } else {
+                            avatarDiv = (<div className='user-icon'>{splitSliceUpCase(member.username)}</div>)
+                        }
                         return <li key={member.id} className='server-member-list-item' title={member.username}>
                             <div className='dm-friend-item-detail'>
-                                <div className='user-icon'>{splitSliceUpCase(member.username)}</div>
+                                {avatarDiv}
                                 <div>{member.username}</div>
                                 <button onClick={() => this.friendClick(member.username, member.id)} className='add-direct-message-button'>+</button>
                             </div>
@@ -68,24 +93,24 @@ class ChannelView extends React.Component {
             })
 
         let headerContent;
-            if (this.props.selectedChannel){
-                if (this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
-                    headerContent = <div className='server-view-header'>
-                                        <div className='channel-name'><i className="fas fa-hashtag"></i>{this.props.selectedChannel.channelName}</div>
-                                        <UserSearchFormContainer serverId={this.props.serverId}></UserSearchFormContainer> 
-                                    </div>
-                } else if (!this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
-                    headerContent = <div className='server-view-header'>
-                                        <div className='channel-name'><i className="fas fa-hashtag"></i>
-                                        {this.props.selectedChannel.channelName}</div>
-                                    </div>
+        if (this.props.selectedChannel){
+            if (this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
+                headerContent = <div className='server-view-header'>
+                                    <div className='channel-name-top'><i className="fas fa-hashtag"></i>{this.props.selectedChannel.channelName}</div>
+                                    <UserSearchFormContainer serverId={this.props.serverId}></UserSearchFormContainer> 
+                                </div>
+            } else if (!this.props.user.publicServers.includes(parseInt(this.props.serverId))) {
+                headerContent = <div className='server-view-header'>
+                                    <div className='channel-name'><i className="fas fa-hashtag"></i>
+                                    {this.props.selectedChannel.channelName}</div>
+                                </div>
                 }
             }
 
-            let serverName;
-            if (this.props.server) {
-                serverName = this.props.server.serverName.slice(0, 1).toUpperCase() + this.props.server.serverName.slice(1)
-            }
+        let serverName;
+        if (this.props.server) {
+            serverName = this.props.server.serverName.slice(0, 1).toUpperCase() + this.props.server.serverName.slice(1)
+        }
 
         return (
             <div className='homepage'>
@@ -106,11 +131,15 @@ class ChannelView extends React.Component {
                     </div>
                 </div>
                 <div className={!this.props.user.publicServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'private-server-div'}>
-                    <header className="selected-public-server-name-header">{serverName}</header>
+                    <header className="selected-public-server-name-header">
+                        <div>{serverName}</div></header>
                     <div id='server-channel-holder'>
                         <ChannelIndexContainer/>
-                        <button className={!this.props.ownedServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'delete-button'} onClick={() => {this.deleteServer(this.props.serverId)
-                        this.props.history.push('/channels/@me')}}>Delete Server</button>
+                        <button className={!this.props.ownedServers.includes(parseInt(this.props.serverId)) ? 'hidden' : 'delete-button'} 
+                            onClick={() => {
+                                this.deleteServer(this.props.serverId)
+                                this.props.history.push('/channels/@me')
+                                }}>Delete Server</button>
                         <footer className='private-server-div-footer'>
                             <div className='inner-footer-div'>
                                 <img src={window.whiteontback} className='in-footer-logo' alt="home"/> 
@@ -125,9 +154,12 @@ class ChannelView extends React.Component {
                     
                     <div className='middle-main'>
                         <div className='middle-home'>
-                            <div>I hold channel messages</div>
+                            <div id='micontainer-holder'>
+                                <MessagesIndexContainer/>
+                                <CreateMessageFormContainer/>
+                            </div>
                         </div>
-                    <div className='right-most-div'><ul>{this.selectedServerIdMembers}</ul></div>
+                    <div className='right-most-div'><ul id='server-member-div'>{this.selectedServerIdMembers}</ul></div>
                     </div>   
                 
                 </div>

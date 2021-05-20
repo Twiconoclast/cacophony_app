@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta property='og:title' content='CacophonyApp'/>
+    <meta property='og:image' content='<%= image_url('from_discord/logo_icon.ico') %>'/>
+    <meta property='og:description' content='Cacophony is a Discord clone that allows users to send messages directly or within a group.'/>
+    <meta property='og:url' content='https://cacophony-app.herokuapp.com/#/'/>
     <title>CacophonyApp</title>
     <link rel="shortcut icon" type="image/jpg" href="<%= image_url('from_discord/logo_icon.ico') %>"/>
     <% if logged_in? %>
@@ -46,6 +50,12 @@
       window.demouser = "<%= image_url('demo_user_avatar.PNG') %>";
       window.smalllogo = "<%= image_url('from_discord/logo_icon.ico') %>";
       window.whiteontback = "<%= image_url('pngfind.com-discord-icon-png-283551.png') %>";
+      window.blueballoonav = "<%= image_url('profile_images/balloon_blue_thing.PNG') %>";
+      window.blueguyav = "<%= image_url('profile_images/blue_guy.PNG') %>";
+      window.frogav = "<%= image_url('profile_images/frog_lady.PNG') %>";
+      window.mayberabbitav = "<%= image_url('profile_images/maybe_rabbit.PNG') %>";
+      window.mushroomav = "<%= image_url('profile_images/mushroom_guy.PNG') %>";
+      window.wizardav = "<%= image_url('profile_images/wizard.PNG') %>";
     </script>
     <script src="https://kit.fontawesome.com/cf1f8fa8bf.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>

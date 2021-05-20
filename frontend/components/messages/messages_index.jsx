@@ -18,8 +18,6 @@ class MessagesIndex extends React.Component {
     }
 
     UNSAFE_componentWillReceiveProps(prevProps) {
-        console.log(prevProps.messages)
-        console.log(this.props.messages)
         if (this.props.messages.length >= prevProps.messages.length) {
             this.setState({messages: this.props.messages})
         }

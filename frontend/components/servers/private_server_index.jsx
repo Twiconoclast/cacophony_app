@@ -58,9 +58,11 @@ class PrivateServerIndex extends React.Component {
 
         this.serverLinks = this.props.privateServers.map((server) => {
             let avatar;
+            let displayName;
             server.members.forEach((member) => {
                 if (member.username != this.props.user.username && member.imageRef) {
-                    avatar = (<img src={this.imageTransalator(member.imageRef)}/>)
+                    avatar = (<img className='user-avatar-private-server' src={this.imageTransalator(member.imageRef)}/>)
+                    displayName = member.username
                 } else if (!avatar) {
                     avatar = (<img src={window.whiteontback} className='in-link-logo' alt="home"/>)
                 }
@@ -68,7 +70,7 @@ class PrivateServerIndex extends React.Component {
             return (<li className={this.props.selectedServerId == server.id ? `selected-private-server private-server` : `private-server`} key={server.id} title={server.serverName}>
                 <Link className='private-server-link' to={`/channels/${server.id}/${server.defaultChannelId}`}>
                     {avatar}
-                    <div>{server.serverName}</div>
+                    <div>{displayName}</div>
                 </Link>
             </li>)
         })
@@ -79,14 +81,17 @@ class PrivateServerIndex extends React.Component {
                     if (member.id != this.props.user.id) {
                         let avatarDiv;
                         if (member.imageRef) {
-                            avatarDiv = (<div className='user-icon'><img src={this.imageTransalator(member.imageRef)}/></div>)
+                            avatarDiv = (<div className='user-icon'>
+                                    <img className='user-avatar-private-server' src={this.imageTransalator(member.imageRef)}/>
+                                    <div className='dm-username'>{member.username}</div>
+                                </div>)
                         } else {
                             avatarDiv = (<div className='user-icon'>{splitSliceUpCase(member.username)}</div>)
                         }
                         return <li key={member.id} className='server-member-list-item' title={member.username}>
                             <div className='dm-friend-item-detail'>
                                 {avatarDiv}
-                                <div>{member.username}</div>
+                                
                                 <button onClick={() => this.friendClick(member.username, member.id)} className='add-direct-message-button'>+</button>
                             </div>
                         </li>}

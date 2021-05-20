@@ -77,14 +77,18 @@ class ChannelView extends React.Component {
                     if (member.id != this.props.user.id) {
                         let avatarDiv;
                         if (member.imageRef) {
-                            avatarDiv = (<div className='user-icon'><img src={this.imageTransalator(member.imageRef)}/></div>)
+                            avatarDiv = (<div className='user-icon'>
+                                <img src={this.imageTransalator(member.imageRef)}/>
+                                <div className='dm-username'>{member.username}</div>
+                            </div>)
+                            
                         } else {
                             avatarDiv = (<div className='user-icon'>{splitSliceUpCase(member.username)}</div>)
                         }
                         return <li key={member.id} className='server-member-list-item' title={member.username}>
                             <div className='dm-friend-item-detail'>
                                 {avatarDiv}
-                                <div>{member.username}</div>
+                                
                                 <button onClick={() => this.friendClick(member.username, member.id)} className='add-direct-message-button'>+</button>
                             </div>
                         </li>}

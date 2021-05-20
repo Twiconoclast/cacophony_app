@@ -186,12 +186,39 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.private-server a > div {
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 20px;
 }
 
 .private-server-link:hover {
     color: whitesmoke;
 }
 
+.private-server-link > img {
+    height: 36px;
+    width: 36px;
+}
+
+.user-icon > img {
+    height: 36px;
+    width: 36px;
+}
+
+.user-icon-homepage > img {
+    height: 36px;
+    width: 36px;
+}
+
+// .private-server-link {
+//     padding: 20px;
+// }
 
 .private-server-link > .in-link-logo{
     height: 15px;
@@ -248,6 +275,25 @@
     background-color: #202225;
 }
 
+.friend-item-detail:hover .user-icon-homepage {
+    background-color: #202225;
+}
+
+.private-server-link > .user-avatar-private-server {
+    height: 36px;
+    width: 36px;
+}
+
+.user-icon > .user-avatar-private-server {
+    height: 36px;
+    width: 36px;
+}
+
+.user-icon-homepage > .user-avatar-private-server {
+    height: 36px;
+    width: 36px;
+}
+
 .friend-item-detail:hover .message-button {
     background-color: #202225;
 }
@@ -275,14 +321,30 @@
     align-items: baseline;
 }
 
-.user-icon {
+div.user-icon {
     border-radius: 50%;
-    height: 15px;
-    width: 15px;
-    padding: 10px;
-    padding-left: 13px;
+    height: 36px;
+    width: 36px;
+    padding-right: 20px;
+    // padding-left: 13px;
     color: #b9bbbe;
     background-color: #2f3136;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div.user-icon-homepage {
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    padding-right: 20px;
+    // padding-left: 13px;
+    color: #b9bbbe;
+    background-color: #36393f;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .friend-name {
@@ -346,7 +408,12 @@
     display: flex;
     padding: 20px;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+    width: 200px;
+}
+
+.dm-username {
+    padding-left: 10px;
 }
 
 .add-direct-message-button {

@@ -78,7 +78,7 @@ class UserHome extends React.Component {
          
                 let avatarDiv;
                         if (friend.imageRef) {
-                            avatarDiv = (<div className='user-icon'><img src={this.imageTransalator(friend.imageRef)}/></div>)
+                            avatarDiv = (<div className='user-icon-homepage'><img src={this.imageTransalator(friend.imageRef)}/></div>)
                         } else {
                             avatarDiv = (<div className='user-icon'>{splitSliceUpCase(friend.username)}</div>)
                         }

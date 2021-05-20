@@ -32,7 +32,7 @@ class UserSearchForm extends React.Component {
 
     handleSelect(id, e) {
         e.preventDefault()
-        console.log(this.props.serverId)
+  
         this.props.createServerMembership({
             server_id: this.props.serverId,
             member_id: id

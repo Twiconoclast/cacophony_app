@@ -15,7 +15,7 @@ const sessionsReducer = (state=_nullSession, action) => {
         case LOGOUT_CURRENT_USER:
             return _nullSession
         case REMOVE_SERVER:
-            console.log(action)
+    
             if (action.serverId.public_servers != null) {
                 newState.currentUser.publicServers = newState.currentUser.publicServers.filter((ele) => ele == action.serverId.public_servers.id)
             } else if (action.serverId.private_servers != null) {

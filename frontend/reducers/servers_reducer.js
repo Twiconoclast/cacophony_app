@@ -28,7 +28,7 @@ const serversReducer = (state=preState, action) => {
             }
             return newState
         case RECEIVE_SERVER_MEMBERSHIP:
-            console.log(action)
+
             if (action.server.publicServers != null) {
                 newState.publicServers[Object.keys(action.server.publicServers)[0]] = Object.values(action.server.publicServers)[0]
             } else if (action.server.privateServers != null) {

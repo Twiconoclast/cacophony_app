@@ -75,7 +75,7 @@ class UserHome extends React.Component {
 
         this.fLItems = this.fSMList.map((friend) => {
             if (this.props.user.fellowServerMembers.includes(friend.id)) {
-                console.log(friend.imageRef)
+         
                 let avatarDiv;
                         if (friend.imageRef) {
                             avatarDiv = (<div className='user-icon'><img src={this.imageTransalator(friend.imageRef)}/></div>)

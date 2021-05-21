@@ -121,6 +121,7 @@ div #channel-link-ul {
     scroll-snap-type: y proximity;
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
     // justify-content: flex-end;
 }
 
@@ -173,6 +174,7 @@ div #channel-link-ul {
 }
 
 .server-view-header {
+    min-height: 48px;
     display: flex;
     justify-content: space-between;
     width: 100%;

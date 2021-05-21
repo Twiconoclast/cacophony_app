@@ -77,7 +77,6 @@ class ChannelView extends React.Component {
         
         this.selectedServerIdMembers = this.props.publicServers.concat(this.props.privateServers).map((server) => {
             if (this.props.serverId == server.id) {
-                console.log(server.members)
                 return (server.members.map((member) => {
                     if (member.id != this.props.user.id) {
                         let avatarDiv;

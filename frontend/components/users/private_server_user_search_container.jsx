@@ -57,7 +57,7 @@ class PrivateServerUserSearchForm extends React.Component {
         ))
 
         return (
-            <div className='private-search-bar'>
+            <div id='home-search-bar' className='private-search-bar'>
                 <input className='search-for-friends' ref={ (input) => { this.searchBar = input } } value={ this.state.username } onChange={ this.getAutoCompleteResults.bind(this) } type='search' placeholder='Find or start a conversation' />
                 <ul className='results' tabIndex="0" >{autocompleteList}</ul>
             </div>

@@ -15,24 +15,29 @@
     border-radius: 5px;
     justify-content: center;
     color: whitesmoke;
-    max-width: 400px;
+    max-width: 650px;
     margin:auto;
     left: 50%;
-    top: 70%;
+    top: 60%;
     position: absolute;
     transform: translate(-50%, -50%);
 }
 
 #centerer {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    width: 88%;
+    margin: 0 auto;
+    padding-top: 20px;
 }
 
 #home-demo-button {
     margin: 5px;
-    border-radius: 28px;
-    min-width: 200px;
-    font-size: 13px;
+    border-radius: 16px;
+    min-width: 250px;
+    font-size: 18px;
+    line-height: 24px;
     padding: 10px 16px;
     background-color: white;
     color: #23272a;
@@ -43,9 +48,10 @@
 
 #home-signup-button {
     margin: 5px;
-    border-radius: 28px;
-    min-width: 200px;
-    font-size: 13px;
+    border-radius: 16px;
+    min-width: 250px;
+    font-size: 18px;
+    line-height: 24px;
     padding: 10px 16px;
     background-color: #23272a;
     color: white;
@@ -55,7 +61,7 @@
 }
 
 button:hover {
-    border-style: inset;
+    // border-style: inset;
     cursor: pointer;
 }
 
@@ -64,41 +70,50 @@ button {
 }
 
 #login-button {
-    border-radius: 40px;
+    border-radius: 16px;
     font-size: 14px;
     background-color: white;
-    padding: 7px 16px;
+    padding: 10px 16px;
     color: #23272a;
+    border-style: none;
+    margin-top: 10px;
 }
 
 #welcome {
-    font-size: 25px;
+    font-size: 44px;
     text-align: center;
 }
 
 #subwelcome {
-    font-size: 14px;
+    font-size: 20px;
+    line-height: 23px;
     text-align: center;
+    width: 80%;
+    margin: 0 auto;
 }
 
 header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 5px 5px;
+    width: 70%;
+    margin: 0 auto;
+
 }
 
 #homepage-logo-container {
     align-items: center;
     justify-content: center;
     display: flex;
+    margin-top: 10px;
 }
 
 #homepage-logo-text {
-    max-height: 14px;
+    max-height: 20px;
 }
 
 #homepage-logo {
-    max-height: 30px;
+    max-height: 40px;
 }
 
 #top-of-page {
@@ -155,9 +170,44 @@ header {
     min-height: 400px;
     display: flex;
     justify-content: space-around;
-    align-content: center;
-    padding-top: 200px;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
     border-radius: 5px;
+}
+
+.chat-image {
+    max-height: 500px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+#middle-caption-on-right {
+    h2 {
+        width: 50%;
+        font-size: 35px;
+        // line-height: 120%;
+        font-weight: 700;
+        margin: 0 auto;
+    }
+}
+
+#middle-caption-on-left {
+    h2 {
+        width: 50%;
+        font-size: 35px;
+        // line-height: 120%;
+        font-weight: 700;
+        margin: 0 auto;
+        text-align: center;
+    }
+    p {
+        width: 50%;
+        font-size: 20px;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 20px;
+    }
 }
 
 #third-div {

@@ -49,20 +49,23 @@ class Splash extends React.Component {
                 </div>
                 <div className='middle-div'>
                     <div className='middle-images'>
-                        <img src={window.ballons} alt="balloons"/>
+                        <img className='chat-image' src={window.chat} alt="chat_image"/>
                     </div>
                     <div id='middle-caption-on-right'>
-                        <h2>There's so much great stuff to say about this app!</h2>
-                        <p>It's going be right here</p>
+                        <h2>Create servers, topical channels, add friends, and get to chatting!</h2>
                     </div>
                 </div>
                 <div id='third-div' className='middle-div'>
-                    <div className='middle-images'>
-                        <img src={window.tcastle} alt="castle"/>
-                    </div>
                     <div id='middle-caption-on-left'>
-                        <h2>Even more great things!</h2>
-                        <p>Right here!!!</p>
+                        <img id='pink-top' src={window.pink_star}/>
+                        <img id='yellow-top' src={window.yellow_star}/>
+                        <h2>Connect with friends, meet new people, share your thoughts for all to hear!</h2>
+                        <p>(or for few to hear, if you prefer)</p>
+                        <img id='small_pink-top' src={window.green_star}/>
+                        <img id='green-top' src={window.smaller_pink_star}/>
+                    </div>
+                    <div className='middle-images'>
+                        <img src={window.server_members_img} alt="server_members_image"/>
                     </div>
                 </div>
                 <footer>

@@ -28,6 +28,10 @@ class ChannelView extends React.Component {
         this.props.fetchMessages(this.props.channelId)
     }
 
+    UNSAFE_componentWillReceiveProps(prevProps) {
+
+    }
+
     friendClick(name, id) {
         if (this.props.user.privateServerFriends.includes(id)) {
             Object.values(this.props.privateServers).forEach((server) => {
@@ -73,6 +77,7 @@ class ChannelView extends React.Component {
         
         this.selectedServerIdMembers = this.props.publicServers.concat(this.props.privateServers).map((server) => {
             if (this.props.serverId == server.id) {
+                console.log(server.members)
                 return (server.members.map((member) => {
                     if (member.id != this.props.user.id) {
                         let avatarDiv;
@@ -83,7 +88,10 @@ class ChannelView extends React.Component {
                             </div>)
                             
                         } else {
-                            avatarDiv = (<div className='user-icon'>{splitSliceUpCase(member.username)}</div>)
+                            avatarDiv = (<div className='user-icon'>
+                                <div>{splitSliceUpCase(member.username)}</div>
+                                <div className='dm-username'>{member.username}</div>
+                            </div>)
                         }
                         return <li key={member.id} className='server-member-list-item' title={member.username}>
                             <div className='dm-friend-item-detail'>

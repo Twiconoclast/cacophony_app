@@ -12,7 +12,8 @@
     flex-direction: column;
     min-height: 100%;
     align-content: flex-start;
-    
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .server-links-ul {
@@ -262,6 +263,8 @@ ul {
 
     min-width: 360px;
     max-width: 420px;
+    display: flex;
+    flex-direction: column;
 }
 
 .close-button {
@@ -283,8 +286,9 @@ ul {
 
 .middle-main {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    height: 95.65%;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     flex-wrap: nowrap;
@@ -294,10 +298,22 @@ ul {
     width: 100%;
     min-height:100%;
     padding: 0;
+    display: flex;
+    flex-direction: row;
 }
 
 .main-header {
     height: 41px;
+    background-color: #36393f;
+    border-bottom: 1px solid #2f3136;
+    border-bottom-style: outset;
+}
+
+.main-header-home {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: 41px;
     background-color: #36393f;
     border-bottom: 1px solid #2f3136;
     border-bottom-style: outset;

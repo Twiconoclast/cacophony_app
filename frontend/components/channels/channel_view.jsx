@@ -163,20 +163,24 @@ class ChannelView extends React.Component {
                     </div>
                 </div>
                 <div className='header-and-main'>
-                    <header className='main-header'>{headerContent}</header>
                     
                     <div className='middle-main'>
+                        <header className='main-header'>{headerContent}</header>
                         <div className='middle-home'>
                             <div id='micontainer-holder'>
                                 <MessagesIndexContainer/>
                                 <CreateMessageFormContainer/>
                             </div>
                         </div>
-                    <div className='right-most-div'><ul id='server-member-div'>{this.selectedServerIdMembers}</ul></div>
-                    </div>   
+                    </div>  
+                    <div className='right-most-div'>
+                        <header className='main-header'></header>
+                        <ul id='server-member-div'>{this.selectedServerIdMembers}</ul>
+                    </div>
+                 
                 
-                </div>
             </div>
+        </div>
         )
     }
 }

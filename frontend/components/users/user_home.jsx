@@ -135,18 +135,19 @@ class UserHome extends React.Component {
                     </div>
                 </div>
                 <div className='header-and-main'>
-                    <header className='main-header'></header>
                     <div className='middle-main'>
+                        <header className='main-header-home'></header>
                         <div className='middle-home-home'>
                             <div className='home-friends-div'>
                                 <div id='all-friends-label'>ALL FRIENDS - {this.fSMList.length}</div>
                                 <ul id='homepage-friend-list-items'>{this.fLItems}</ul>
                             </div>
                         </div>
-                        <div className='right-most-div'>
-                            
-                        </div>
                     </div>
+                    <div className='right-most-div'>
+                        <header className='main-header'></header>
+                    </div>
+                    
                 </div>
             </div>
         )

@@ -13,6 +13,9 @@
 
 > Cacophony is a Discord clone that allows users to send messages directly or within a group.
 
+This is an interesting section which connects private servers: 
+![image](https://user-images.githubusercontent.com/72429572/119418704-7304f180-bcad-11eb-8759-735dfe64b3fd.png)
+
 ### 🏠 [Homepage](https://github.com/Twiconoclast/cacophony_app#readme)
 
 ### ✨ [Demo](https://cacophony-app.herokuapp.com/#/)

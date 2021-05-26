@@ -32,16 +32,21 @@ class ChannelView extends React.Component {
 
     }
 
-    friendClick(name, id) {
+    // This function directs the user to a private server when another user's name is clicked
+    friendClick(name, id) {    
+        // Checks whether a server exists between the users. id is valid by design
         if (this.props.user.privateServerFriends.includes(id)) {
-            Object.values(this.props.privateServers).forEach((server) => {
+            // Iterates over the user's private servers to find the correct one
+            Object.values(this.props.privateServers).forEach((server) => {  
                 if (server.ownerId == id || server.recipientId == id) {
+                    // When found, directs to that url
                     this.props.history.push(`/channels/${server.id}/${server.defaultChannelId}`)
                 }
             })
-        } else {
+        // If no server exists, one is created and the user is directed to the new server
+        } else { 
             return this.props.createServer({owner_id: this.props.user.id, server_name: `DM-${name}-${this.props.user.username}`, private: true, recipient_id: id})
-            .then((response) => this.props.history.push(`/channels/${Object.values(response.server.privateServers)[0].id}/${Object.values(response.server.privateServers)[0].defaultChannelId}`))
+                .then((response) => this.props.history.push(`/channels/${Object.values(response.server.privateServers)[0].id}/${Object.values(response.server.privateServers)[0].defaultChannelId}`))
         }
     }
 
@@ -137,7 +142,10 @@ class ChannelView extends React.Component {
                         <PrivateServerIndexContainer/>
                         <footer className='private-server-div-footer'>
                             <div className='inner-footer-div'>
-                                <img src={window.whiteontback} className='in-footer-logo' alt="home"/> <div className='footer-name'>{this.props.user.username}</div>
+                                <div className='inner-name-and-logo-holder'>
+                                    <img src={window.whiteontback} className='in-footer-logo' alt="home"/> 
+                                    <div className='footer-name'>{this.props.user.username}</div>
+                                </div>
                                 <button className='logout-button' onClick={this.handleLogOut}>Log Out</button>
                             </div>
                         </footer>
@@ -155,8 +163,10 @@ class ChannelView extends React.Component {
                                 }}>Delete Server</button>
                         <footer className='private-server-div-footer'>
                             <div className='inner-footer-div'>
-                                <img src={window.whiteontback} className='in-footer-logo' alt="home"/> 
-                                <div className='footer-name'>{this.props.user.username}</div>
+                                <div className='inner-name-and-logo-holder'>
+                                    <img src={window.whiteontback} className='in-footer-logo' alt="home"/> 
+                                    <div className='footer-name'>{this.props.user.username}</div>
+                                </div>
                                 <button className='logout-button' onClick={this.handleLogOut}>Log Out</button>
                             </div>
                         </footer>

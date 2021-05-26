@@ -128,7 +128,10 @@ class UserHome extends React.Component {
                         <PrivateServerIndexContainer serverIdLinks={this.privateServerIdLinks}/>
                         <footer className='private-server-div-footer'>
                             <div className='inner-footer-div'>
-                                <img src={window.whiteontback} className='in-footer-logo' alt="home"/> <div className='footer-name'>{this.props.user.username}</div>
+                                <div className='inner-name-and-logo-holder'>
+                                    <img src={window.whiteontback} className='in-footer-logo' alt="home"/> 
+                                    <div className='footer-name'>{this.props.user.username}</div>
+                                </div>
                                 <button className='logout-button' onClick={this.handleLogOut}>Log Out</button>
                             </div>
                         </footer>
